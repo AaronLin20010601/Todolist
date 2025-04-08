@@ -1,0 +1,26 @@
+using Microsoft.EntityFrameworkCore;
+using Todolist_Backend.Models;
+using Todolist_Backend.Settings;
+using Todolist_Backend.Services;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// 加入 DbContext 並使用 PostgreSQL 連線
+builder.Services.AddDbContext<TodolistDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.Configure<MailjetSettings>(builder.Configuration.GetSection("Mailjet"));
+builder.Services.AddScoped<IEmailService, EmailService>();
+
+// 其他服務註冊
+builder.Services.AddControllers();
+
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();

@@ -1,0 +1,8 @@
+﻿namespace Todolist_Backend.Settings
+{
+    public class MailjetSettings
+    {
+        public string ApiKey { get; set; } = null!;
+        public string ApiSecret { get; set; } = null!;
+    }
+}
