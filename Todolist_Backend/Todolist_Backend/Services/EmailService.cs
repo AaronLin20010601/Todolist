@@ -27,33 +27,45 @@ namespace Todolist_Backend.Services
         {
             MailjetClient client = new MailjetClient(_settings.ApiKey, _settings.ApiSecret);
 
+            var message = new
+            {
+                From = new
+                {
+                    Email = _settings.SenderEmail,
+                    Name = "TodoList"
+                },
+                To = new[]
+                {
+                    new
+                    {
+                        Email = toEmail,
+                        Name = toEmail
+                    }
+                },
+                Subject = subject,
+                TextPart = body,
+                HTMLPart = $"<p>{body}</p>"
+            };
+
             var request = new MailjetRequest
             {
-                Resource = Send.Resource,
+                Resource = Send.Resource
             }
-            .Property(Send.Messages, new JArray {
-            new JObject {
-                {
-                    "From", new JObject {
-                        {"Email", "aaronguitarnoob90425@gmail.com"},
-                        {"Name", "TodoList 系統"}
-                    }
-                },
-                {
-                    "To", new JArray {
-                        new JObject {
-                            {"Email", toEmail},
-                            {"Name", toEmail}
-                        }
-                    }
-                },
-                { "Subject", subject },
-                { "HTMLPart", body }
-            }
+            .Property(Send.Messages, new JArray
+            {
+                JObject.FromObject(message)
             });
 
             var response = await client.PostAsync(request);
             bool success = response.IsSuccessStatusCode;
+
+            if (!success)
+            {
+                Console.WriteLine($"Mailjet Error: {response.StatusCode} - {response.GetErrorMessage()}");
+                Console.WriteLine($"Mailjet Raw Response: {response.GetData()}");
+                Console.WriteLine($"SenderEmail from settings: {_settings.SenderEmail}");
+                Console.WriteLine($"ApiKey: {_settings.ApiKey}");
+            }
 
             // 將郵件記錄存入資料庫
             var emailLog = new EmailLog
