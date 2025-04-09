@@ -16,3 +16,4 @@ Npgsql for connection with PorstgreSQL
   
 Vue Frontend:  
 Tailwindcss for css style  
+Vuex for data storage and sync  
