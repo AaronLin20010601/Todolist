@@ -9,7 +9,7 @@ namespace Todolist_Backend.Services
 {
     public interface IEmailService
     {
-        Task<bool> SendEmailAsync(string toEmail, string subject, string body);
+        Task<bool> SendEmailAsync(IEnumerable<string> toEmails, string subject, string body);
     }
 
     public class EmailService : IEmailService
@@ -23,59 +23,46 @@ namespace Todolist_Backend.Services
             _context = context;
         }
 
-        public async Task<bool> SendEmailAsync(string toEmail, string subject, string body)
+        public async Task<bool> SendEmailAsync(IEnumerable<string> toEmails, string subject, string body)
         {
-            MailjetClient client = new MailjetClient(_settings.ApiKey, _settings.ApiSecret);
+            var client = new MailjetClient(_settings.ApiKey, _settings.ApiSecret);
 
-            var message = new
+            // 動態構建收件人清單
+            var recipients = new JArray();
+            foreach (var toEmail in toEmails)
             {
-                From = new
-                {
-                    Email = _settings.SenderEmail,
-                    Name = "TodoList"
-                },
-                To = new[]
-                {
-                    new
-                    {
-                        Email = toEmail,
-                        Name = toEmail
-                    }
-                },
-                Subject = subject,
-                TextPart = body,
-                HTMLPart = $"<p>{body}</p>"
-            };
+                recipients.Add(new JObject { { "Email", toEmail } });
+            }
 
             var request = new MailjetRequest
             {
                 Resource = Send.Resource
             }
-            .Property(Send.Messages, new JArray
+            .Property(Send.FromEmail, _settings.SenderEmail)
+            .Property(Send.FromName, "Todolist")
+            .Property(Send.Subject, subject)
+            .Property(Send.TextPart, body)
+            .Property(Send.HtmlPart, $"<p>{body}</p>")
+            .Property(Send.Recipients, recipients);
+
+            // 將郵件記錄存入資料庫
+            var emailLog = new EmailLog
             {
-                JObject.FromObject(message)
-            });
+                ToEmail = string.Join(",", toEmails),
+                Subject = subject,
+                Body = body,
+                SentAt = DateTime.UtcNow,
+            };
 
             var response = await client.PostAsync(request);
             bool success = response.IsSuccessStatusCode;
-
             if (!success)
             {
                 Console.WriteLine($"Mailjet Error: {response.StatusCode} - {response.GetErrorMessage()}");
                 Console.WriteLine($"Mailjet Raw Response: {response.GetData()}");
                 Console.WriteLine($"SenderEmail from settings: {_settings.SenderEmail}");
-                Console.WriteLine($"ApiKey: {_settings.ApiKey}");
             }
-
-            // 將郵件記錄存入資料庫
-            var emailLog = new EmailLog
-            {
-                ToEmail = toEmail,
-                Subject = subject,
-                Body = body,
-                SentAt = DateTime.UtcNow,
-                IsSuccess = success
-            };
+            emailLog.IsSuccess = success;
 
             _context.EmailLogs.Add(emailLog);
             await _context.SaveChangesAsync();

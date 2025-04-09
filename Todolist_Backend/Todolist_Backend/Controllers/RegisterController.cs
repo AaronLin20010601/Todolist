@@ -56,7 +56,11 @@ namespace Todolist_Backend.Controllers
             // 發送驗證碼至使用者的Email
             var subject = "Your verification code";
             var body = $"Your verification code is {verificationCode}. It is valid for 10 minutes.";
-            bool emailSent = await _emailService.SendEmailAsync(model.Email, subject, body);
+            var toEmails = new List<string>
+            {
+                model.Email
+            };
+            bool emailSent = await _emailService.SendEmailAsync(toEmails, subject, body);
 
             if (!emailSent)
             {
