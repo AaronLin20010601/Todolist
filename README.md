@@ -17,3 +17,10 @@ Npgsql for connection with PorstgreSQL
 Vue Frontend:  
 Tailwindcss for css style  
 Vuex for data storage and sync  
+  
+Datatable design
+--
+User:User's basic data and infos. Columns:Id, Username, Email, PasswordHash, CreatedAt.  
+Todo:Contents of Todolist. Columns:Id, Title, Description, IsCompleted, CreatedAt, DueDate, UserId.  
+EmailLog:Email logs record. Columns:Id, ToEmail, Subject, Body, SentAt, IsSuccess.  
+ResetToken:Tokens using on register and reset password. Columns:Id, Token, Email, CreatedAt, ExpirationDate, IsUsed.  
