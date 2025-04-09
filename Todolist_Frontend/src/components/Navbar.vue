@@ -5,16 +5,16 @@
       <h1 class="text-xl font-bold">📝 My Todo List</h1>
       <ul class="flex space-x-6">
         <li v-if="!isLoggedIn">
-          <RouterLink to="/" class="hover:text-yellow-300" active-class="underline">登入</RouterLink>
+          <RouterLink to="/" class="hover:text-yellow-300" active-class="underline">Login</RouterLink>
         </li>
         <li v-if="!isLoggedIn">
-          <RouterLink to="/register" class="hover:text-yellow-300" active-class="underline">註冊</RouterLink>
+          <RouterLink to="/register" class="hover:text-yellow-300" active-class="underline">Register</RouterLink>
         </li>
         <li v-if="isLoggedIn">
-          <RouterLink to="/todo" class="hover:text-yellow-300" active-class="underline">首頁</RouterLink>
+          <RouterLink to="/todo" class="hover:text-yellow-300" active-class="underline">Todolist</RouterLink>
         </li>
         <li v-if="isLoggedIn">
-          <button @click="logout" class="hover:text-yellow-300">登出</button>
+          <button @click="logout" class="hover:text-yellow-300">Logout</button>
         </li>
       </ul>
     </div>
@@ -29,7 +29,7 @@ export default {
   setup() {
     const router = useRouter()
     const store = useStore()
-    // 從 localStorage 讀取 token，判斷是否已登入
+    // 讀取 token，判斷是否已登入
     const isLoggedIn = computed(() => store.getters.isLoggedIn)
 
     // 登出功能
