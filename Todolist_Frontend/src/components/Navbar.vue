@@ -1,19 +1,49 @@
+<!--網頁導覽列-->
 <template>
-    <nav class="bg-blue-600 text-white px-6 py-4 shadow-md">
-      <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-xl font-bold">📝 My Todo List</h1>
-        <ul class="flex space-x-6">
-          <li>
-            <RouterLink to="/" class="hover:text-yellow-300" active-class="underline">登入</RouterLink>
-          </li>
-          <li>
-            <RouterLink to="/register" class="hover:text-yellow-300" active-class="underline">註冊</RouterLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </template>
+  <nav class="bg-blue-600 text-white px-6 py-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold">📝 My Todo List</h1>
+      <ul class="flex space-x-6">
+        <li v-if="!isLoggedIn">
+          <RouterLink to="/" class="hover:text-yellow-300" active-class="underline">登入</RouterLink>
+        </li>
+        <li v-if="!isLoggedIn">
+          <RouterLink to="/register" class="hover:text-yellow-300" active-class="underline">註冊</RouterLink>
+        </li>
+        <li v-if="isLoggedIn">
+          <RouterLink to="/todo" class="hover:text-yellow-300" active-class="underline">首頁</RouterLink>
+        </li>
+        <li v-if="isLoggedIn">
+          <button @click="logout" class="hover:text-yellow-300">登出</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</template>
   
-  <script setup>
-  import { RouterLink } from 'vue-router'
-  </script>
+<script>
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+export default {
+  setup() {
+    const router = useRouter()
+    const store = useStore()
+    // 從 localStorage 讀取 token，判斷是否已登入
+    const isLoggedIn = computed(() => store.getters.isLoggedIn)
+
+    // 登出功能
+    const logout = () => {
+      // 清除 token
+      store.dispatch('logout')
+      // 重定向到登入頁
+      router.push("/")
+    }
+
+    return {
+      isLoggedIn,
+      logout,
+    }
+  },
+}
+</script>

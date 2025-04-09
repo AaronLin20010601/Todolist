@@ -14,12 +14,11 @@ namespace Todolist_Backend.Controllers
         private readonly IEmailService _emailService;
         private readonly TokenService _tokenService;
 
-        // 建構函數進行依賴注入
         public RegisterController(TodolistDbContext context, IEmailService emailService, TokenService tokenService)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
-            _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
-            _tokenService = tokenService ?? throw new ArgumentNullException(nameof(tokenService));
+            _context = context;
+            _emailService = emailService;
+            _tokenService = tokenService;
         }
 
         // 註冊流程的第一步：發送驗證碼到Email

@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Todolist_Backend.Models;
 using Todolist_Backend.Settings;
 using Todolist_Backend.Services;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,24 @@ builder.Services.AddDbContext<TodolistDbContext>(options =>
 builder.Services.Configure<MailjetSettings>(builder.Configuration.GetSection("Mailjet"));
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<TokenService>();
+
+// 加入 JWT 驗證
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        var config = builder.Configuration;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = config["Jwt:Issuer"],
+            ValidAudience = config["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]))
+        };
+    });
+builder.Services.AddAuthorization();
 
 // 設置 CORS，允許跨域請求
 builder.Services.AddCors(options =>
@@ -32,6 +52,7 @@ app.UseCors("AllowAnyOrigin");
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

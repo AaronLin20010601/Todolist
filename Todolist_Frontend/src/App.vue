@@ -1,3 +1,4 @@
+<!--網頁共用部分-->
 <script setup>
 import Navbar from './components/Navbar.vue'
 </script>
