@@ -69,7 +69,7 @@ namespace Todolist_Backend.Controllers
             return Ok("Verification code sent.");
         }
 
-        // 重設密碼流程第二步:輸入驗證碼與新密碼，完成重設
+        // 重設密碼流程第二步 輸入驗證碼與新密碼，完成重設
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetModel model)
         {

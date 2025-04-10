@@ -10,17 +10,17 @@
   
 <script>
 export default {
-  name: "Footer",
+    name: "Footer",
 };
 </script>
 
 <style scoped>
 footer {
-  background-color: #2d3748;
-  color: #fff;
+    background-color: #2d3748;
+    color: #fff;
 }
 
 footer a {
-  text-decoration: none;
+    text-decoration: none;
 }
 </style>
