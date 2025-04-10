@@ -8,20 +8,20 @@ namespace Todolist_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RegisterController : ControllerBase
+    public class ResetController : ControllerBase
     {
         private readonly TodolistDbContext _context;
         private readonly IEmailService _emailService;
         private readonly TokenService _tokenService;
 
-        public RegisterController(TodolistDbContext context, IEmailService emailService, TokenService tokenService)
+        public ResetController(TodolistDbContext context, IEmailService emailService, TokenService tokenService)
         {
             _context = context;
             _emailService = emailService;
             _tokenService = tokenService;
         }
 
-        // 註冊流程的第一步 發送驗證碼到Email
+        // 重設密碼流程第一步 輸入已註冊的Email，發送驗證碼
         [HttpPost("send-verification-code")]
         public async Task<IActionResult> SendVerificationCode([FromBody] EmailModel model)
         {
@@ -33,9 +33,9 @@ namespace Todolist_Backend.Controllers
 
             // 檢查Email是否已經註冊過
             var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
-            if (existingUser != null)
+            if (existingUser == null)
             {
-                return BadRequest("Email is already registered.");
+                return BadRequest("Email is not registered.");
             }
 
             // 生成驗證碼
@@ -53,10 +53,10 @@ namespace Todolist_Backend.Controllers
             await _context.SaveChangesAsync();
 
             // 發送驗證碼至使用者的Email
-            var subject = "Your verification code";
+            var subject = "Password Reset Verification Code";
             var body = $"Your verification code is {verificationCode}. It is valid for 10 minutes.";
-            var toEmails = new List<string>
-            {
+            var toEmails = new List<string> 
+            { 
                 model.Email
             };
             bool emailSent = await _emailService.SendEmailAsync(toEmails, subject, body);
@@ -69,15 +69,16 @@ namespace Todolist_Backend.Controllers
             return Ok("Verification code sent.");
         }
 
-        // 註冊流程的第二步 驗證驗證碼，並註冊用戶
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        // 重設密碼流程第二步:輸入驗證碼與新密碼，完成重設
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetModel model)
         {
-            // 檢查註冊資料是否有效
-            if (string.IsNullOrWhiteSpace(model.Email) || string.IsNullOrWhiteSpace(model.Username) ||
-                string.IsNullOrWhiteSpace(model.Password) || model.Password != model.ConfirmPassword)
+            // 檢查重設密碼是否相同
+            if (string.IsNullOrWhiteSpace(model.Email) ||
+                string.IsNullOrWhiteSpace(model.Password) ||
+                model.Password != model.ConfirmPassword)
             {
-                return BadRequest("Invalid registration data.");
+                return BadRequest("Invalid reset data.");
             }
 
             // 查找ResetToken，確認Email和驗證碼
@@ -89,24 +90,23 @@ namespace Todolist_Backend.Controllers
                 return BadRequest("Invalid or expired verification code.");
             }
 
-            // 註冊新用戶
-            var user = new User
+            // 檢查是否有該用戶
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+            if (user == null)
             {
-                Username = model.Username,
-                Email = model.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password), // 密碼加密
-                CreatedAt = DateTime.UtcNow
-            };
+                return BadRequest("User not found.");
+            }
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            // 更新密碼
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password);
+            _context.Users.Update(user);
 
             // 設置ResetToken為已使用
             resetToken.IsUsed = true;
             _context.ResetTokens.Update(resetToken);
             await _context.SaveChangesAsync();
 
-            return Ok("User registered successfully.");
+            return Ok("Password has been reset successfully.");
         }
     }
 }

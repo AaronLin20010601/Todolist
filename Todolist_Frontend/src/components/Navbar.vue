@@ -10,6 +10,9 @@
         <li v-if="!isLoggedIn">
           <RouterLink to="/register" class="hover:text-yellow-300" active-class="underline">Register</RouterLink>
         </li>
+        <li v-if="!isLoggedIn">
+          <RouterLink to="/reset" class="hover:text-yellow-300" active-class="underline">Reset Password</RouterLink>
+        </li>
         <li v-if="isLoggedIn">
           <RouterLink to="/todo" class="hover:text-yellow-300" active-class="underline">Todolist</RouterLink>
         </li>
