@@ -8,6 +8,8 @@ import axios from 'axios'
 
 const app = createApp(App)
 
+store.dispatch('initState')
+
 app.use(router)
 
 app.use(store)

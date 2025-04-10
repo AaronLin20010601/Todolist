@@ -39,6 +39,9 @@ export default {
         const logout = () => {
             // 清除 token
             store.dispatch('logout')
+            // 清除 localStorage
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
             // 重定向到登入頁
             router.push("/")
         }

@@ -73,7 +73,7 @@ export default {
                 // 假設後端回應包含 token
                 if (token && user) {
                     // 透過 login mutation 更新 Vuex 狀態與 localStorage
-                    this.$store.commit("login", { token, user });
+                    this.$store.dispatch("login", { token, user });
 
                     // 導向首頁
                     this.$router.push("/todo");

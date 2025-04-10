@@ -29,7 +29,7 @@ namespace Todolist_Backend.Controllers
             {
                 return Unauthorized("User is not authenticated.");
             }
-                
+
             var query = _context.Todos.Where(t => t.UserId == userId);
 
             // 根據篩選條件進行查詢
@@ -63,6 +63,48 @@ namespace Todolist_Backend.Controllers
             }).ToList();
 
             return Ok(todoModels);
+        }
+
+        // 新增 Todo
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> CreateTodo([FromBody] TodoCreateUpdateModel model)
+        {
+            // 檢查標題是否為空
+            if (string.IsNullOrWhiteSpace(model.Title))
+            {
+                return BadRequest("Title is required.");
+            }
+
+            // 檢查 DueDate 是否小於當前時間
+            if (model.DueDate.HasValue && model.DueDate.Value < DateTime.UtcNow)
+            {
+                return BadRequest("Due date cannot be in the past.");
+            }
+
+            // 確保有登入的用戶
+            var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
+
+            if (userId == 0)
+            {
+                return Unauthorized("User is not authenticated.");
+            }
+
+            // 建立 Todo
+            var todo = new Todo
+            {
+                Title = model.Title,
+                Description = model.Description,
+                DueDate = model.DueDate?.ToUniversalTime() ?? DateTime.UtcNow.AddDays(1), // 若為 null 則預設明天
+                IsCompleted = model.IsCompleted,
+                CreatedAt = DateTime.UtcNow,
+                UserId = userId
+            };
+
+            _context.Todos.Add(todo);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Todo created successfully!", id = todo.Id });
         }
     }
 }
