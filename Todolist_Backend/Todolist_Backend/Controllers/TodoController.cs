@@ -65,6 +65,23 @@ namespace Todolist_Backend.Controllers
             return Ok(todoModels);
         }
 
+        // 更新完成狀態
+        [Authorize]
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateTodoComplete(int id, [FromBody] UpdateCompleteModel model)
+        {
+            var todo = await _context.Todos.FindAsync(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            todo.IsCompleted = model.IsCompleted;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         // 新增 Todo
         [Authorize]
         [HttpPost]
