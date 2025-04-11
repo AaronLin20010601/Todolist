@@ -137,7 +137,7 @@ export default {
                 if (response.status === 200) {
                     // 編輯成功，顯示訊息並返回 Todo 頁面
                     alert('Todo updated successfully!');
-                    this.$router.push('/todo'); // 假設返回 todo 頁面
+                    this.$router.push('/todo'); // 返回 todo 頁面
                 } else {
                     this.errorMessage = response.data.message || 'Failed to update todo.';
                 }
@@ -149,7 +149,7 @@ export default {
     
         // 返回 Todo 頁面
         goToTodoList() {
-            this.$router.push('/todo'); // 假設返回 todo 頁面
+            this.$router.push('/todo'); // 返回 todo 頁面
         },
     },
 };

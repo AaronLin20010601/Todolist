@@ -17,6 +17,9 @@
                 <RouterLink to="/todo" class="hover:text-yellow-300" active-class="underline">Todolist</RouterLink>
             </li>
             <li v-if="isLoggedIn">
+                <RouterLink to="/account" class="hover:text-yellow-300" active-class="underline">Account</RouterLink>
+            </li>
+            <li v-if="isLoggedIn">
                 <button @click="logout" class="hover:text-yellow-300">Logout</button>
             </li>
         </ul>

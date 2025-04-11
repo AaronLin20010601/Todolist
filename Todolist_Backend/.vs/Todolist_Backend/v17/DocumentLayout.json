@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\viewmodels\\accountupdatemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\viewmodels\\accountupdatemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,17 +22,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccountUpdateModel.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\ViewModels\\AccountUpdateModel.cs",
+              "RelativeDocumentMoniker": "Todolist_Backend\\ViewModels\\AccountUpdateModel.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\ViewModels\\AccountUpdateModel.cs",
+              "RelativeToolTip": "Todolist_Backend\\ViewModels\\AccountUpdateModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T07:36:13.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Todolist_Backend\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Todolist_Backend\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAQwBMAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T07:19:21.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "TodoController.cs",
               "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\TodoController.cs",
               "RelativeDocumentMoniker": "Todolist_Backend\\Controllers\\TodoController.cs",
               "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\TodoController.cs",
               "RelativeToolTip": "Todolist_Backend\\Controllers\\TodoController.cs",
-              "ViewState": "AgIAAO4AAAAAAAAAAAAiwAYBAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAUwJ0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-10T01:38:12.596Z",
               "EditorCaption": ""
