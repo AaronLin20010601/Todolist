@@ -45,5 +45,6 @@ PostgreSQL on cloud database Supabase
   
 3. Todolist:
   - Users can view all their todos and filter them by completion status and due date.
+  - Users can check off and complete their todos that have not expired yet.
   - Users can create new todos or edit existing ones.
   - Users can delete their todos if necessary.
