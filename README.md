@@ -49,3 +49,6 @@ PostgreSQL on cloud database Supabase
   - Todos are paginated with 10 items per page. Users can navigate between pages using pagination buttons, and pagination updates dynamically based on the selected filter status.
   - Users can create new todos or edit existing ones.
   - Users can delete their todos if necessary.
+  
+4. Account:
+  - Users can edit and delete their account.
