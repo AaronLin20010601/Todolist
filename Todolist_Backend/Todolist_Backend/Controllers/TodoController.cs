@@ -67,7 +67,7 @@ namespace Todolist_Backend.Controllers
 
         // 更新完成狀態
         [Authorize]
-        [HttpPatch("{id}")]
+        [HttpPatch("{id}/complete")]
         public async Task<IActionResult> UpdateTodoComplete(int id, [FromBody] UpdateCompleteModel model)
         {
             var todo = await _context.Todos.FindAsync(id);
@@ -113,7 +113,7 @@ namespace Todolist_Backend.Controllers
                 Title = model.Title,
                 Description = model.Description,
                 DueDate = model.DueDate?.ToUniversalTime() ?? DateTime.UtcNow.AddDays(1), // 若為 null 則預設明天
-                IsCompleted = model.IsCompleted,
+                IsCompleted = false,
                 CreatedAt = DateTime.UtcNow,
                 UserId = userId
             };
@@ -122,6 +122,94 @@ namespace Todolist_Backend.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(new { message = "Todo created successfully!", id = todo.Id });
+        }
+
+        // 編輯 Todo
+        [Authorize]
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> EditTodo(int id, [FromBody] TodoCreateUpdateModel model)
+        {
+            // 檢查標題是否為空
+            if (string.IsNullOrWhiteSpace(model.Title))
+            {
+                return BadRequest("Title is required.");
+            }
+
+            // 檢查 DueDate 是否小於當前時間
+            if (model.DueDate.HasValue && model.DueDate.Value < DateTime.UtcNow)
+            {
+                return BadRequest("Due date cannot be in the past.");
+            }
+
+            // 確保有登入的用戶
+            var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
+
+            if (userId == 0)
+            {
+                return Unauthorized("User is not authenticated.");
+            }
+
+            // 找出該 Todo
+            var todo = await _context.Todos.FindAsync(id);
+            if (todo == null)
+            {
+                return NotFound("Todo not found.");
+            }
+
+            // 驗證是否為該使用者的 Todo
+            if (todo.UserId != userId)
+            {
+                return Forbid("You are not authorized to edit this Todo.");
+            }
+
+            // 更新資料
+            todo.Title = model.Title;
+            todo.Description = model.Description;
+            if (model.DueDate.HasValue)
+            {
+                todo.DueDate = model.DueDate.Value.ToUniversalTime();
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok("Todo updated successfully.");
+        }
+
+        // 取得要被編輯的 Todo
+        [Authorize]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEditTodo(int id)
+        {
+            // 確保有登入的用戶
+            var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
+
+            if (userId == 0)
+            {
+                return Unauthorized("User is not authenticated.");
+            }
+
+            // 找出該 Todo
+            var todo = await _context.Todos.FindAsync(id);
+            if (todo == null)
+            {
+                return NotFound("Todo not found.");
+            }
+
+            // 驗證是否為該使用者的 Todo
+            if (todo.UserId != userId)
+            {
+                return Forbid("You are not authorized to view this Todo.");
+            }
+
+            // 將該 Todo 轉換成可編輯的資料模型
+            var editTodoModel = new GetEditTodoModel
+            {
+                Title = todo.Title,
+                Description = todo.Description,
+                DueDate = todo.DueDate
+            };
+
+            return Ok(editTodoModel);
         }
     }
 }

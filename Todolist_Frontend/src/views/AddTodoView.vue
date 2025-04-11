@@ -67,7 +67,6 @@ export default {
             title: '',
             description: '',
             dueDate: '',
-            isCompleted: false,
             },
             errorMessage: '',
         };
@@ -92,17 +91,6 @@ export default {
             } else {
                 // 有選擇：轉換為 Date 物件
                 dueDateTime = new Date(this.todo.dueDate);
-
-                // 若只選日期（時間為 00:00:00），補上現在的時間
-                if (
-                dueDateTime.getHours() === 0 &&
-                dueDateTime.getMinutes() === 0 &&
-                dueDateTime.getSeconds() === 0
-                ) {
-                dueDateTime.setHours(now.getHours());
-                dueDateTime.setMinutes(now.getMinutes());
-                dueDateTime.setSeconds(now.getSeconds());
-                }
             }
 
             // 檢查選擇的時間是否早於現在

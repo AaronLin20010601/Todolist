@@ -171,7 +171,7 @@ export default {
                 // 更新前，先更改前端的狀態
                 todo.isCompleted = !todo.isCompleted;
 
-                const response = await this.$http.patch(`http://localhost:5000/api/todo/${todo.id}`, 
+                const response = await this.$http.patch(`http://localhost:5000/api/todo/${todo.id}/complete`, 
                 { isCompleted: todo.isCompleted },
                 {
                     headers: {
