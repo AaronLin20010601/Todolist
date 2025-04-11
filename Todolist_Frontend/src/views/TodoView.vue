@@ -11,7 +11,7 @@
                 <label for="filter" class="mr-2">Filter Status:</label>
                 <select
                 v-model="filter"
-                @change="getTodos"
+                @change="onFilterChange"
                 class="p-2 border border-gray-300 rounded-md"
                 >
                     <option value="all">All</option>
@@ -78,7 +78,7 @@
                         Edit
                         </button>
                         <button
-                            @click="deleteTodo(todo.id)"
+                            @click="deleteTodo(todo)"
                             class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-700"
                         >
                         Delete
@@ -87,6 +87,54 @@
                 </tr>
             </tbody>
         </table>
+
+        <!-- 分頁按鈕 -->
+        <div v-if="totalPages > 1" class="flex justify-center mt-6 space-x-1 items-center">
+            <!-- 第一頁與上一頁 -->
+            <button
+                @click="changePage(1)"
+                :disabled="page === 1"
+                class="px-2 py-1 border rounded-md"
+            >
+                «
+            </button>
+            <button
+                @click="changePage(page - 1)"
+                :disabled="page === 1"
+                class="px-2 py-1 border rounded-md"
+            >
+                ‹
+            </button>
+
+            <!-- 中間幾個頁碼 -->
+            <button
+                v-for="pageNum in visiblePages"
+                :key="pageNum"
+                @click="changePage(pageNum)"
+                :class="[
+                    'px-3 py-1 border rounded-md',
+                    pageNum === page ? 'bg-blue-500 text-white' : 'bg-white text-black border-gray-300 hover:bg-gray-100'
+                ]"
+            >
+                {{ pageNum }}
+            </button>
+
+            <!-- 下一頁與最後一頁 -->
+            <button
+                @click="changePage(page + 1)"
+                :disabled="page === totalPages"
+                class="px-2 py-1 border rounded-md"
+            >
+                ›
+            </button>
+            <button
+                @click="changePage(totalPages)"
+                :disabled="page === totalPages"
+                class="px-2 py-1 border rounded-md"
+            >
+                »
+            </button>
+        </div>
     </div>
 </template>
   
@@ -96,7 +144,23 @@ export default {
         return {
             todos: [],
             filter: 'all',
+            page: 1,
+            pageSize: 10,
+            totalPages: 1,
         };
+    },
+    computed: {
+        visiblePages() {
+            const range = 2; // 顯示當前頁左右各幾頁
+            let start = Math.max(1, this.page - range);
+            let end = Math.min(this.totalPages, this.page + range);
+            const pages = [];
+
+            for (let i = start; i <= end; i++) {
+                pages.push(i);
+            }
+            return pages;
+        }
     },
     methods: {
         // 獲取 Todo 列表
@@ -111,19 +175,38 @@ export default {
                     return;
                 }
 
-                const response = await this.$http.get(`http://localhost:5000/api/todo?filter=${this.filter}`, {
+                const response = await this.$http.get(
+                    `http://localhost:5000/api/todo?filter=${this.filter}&page=${this.page}&pageSize=${this.pageSize}`, {
                     headers: {
                         Authorization: `Bearer ${token}` // 確保在請求中加入 Authorization header
                     }
                 });
                 // 根據 status 來設置 isCompleted 屬性
-                this.todos = response.data.map(todo => {
+                const data = response.data;
+                this.todos = data.items.map(todo => {
                     todo.isCompleted = todo.status === 'completed';
                     return todo;
                 });
+
+                this.totalPages = data.totalPages;
+                this.page = data.currentPage;
             } catch (error) {
                 console.error('Error fetching todos:', error);
             }
+        },
+
+        // 換頁
+        changePage(pageNum) {
+            if (pageNum !== this.page) {
+                this.page = pageNum;
+                this.getTodos(); // 換頁時重新取得資料
+            }
+        },
+
+        // 重置頁面
+        onFilterChange() {
+            this.page = 1;
+            this.getTodos();
         },
     
         // 新增 Todo 跳轉到新增頁面
@@ -137,12 +220,27 @@ export default {
         },
         
         // 刪除 Todo
-        async deleteTodo(todoId) {
+        async deleteTodo(todo) {
             const confirmDelete = confirm('Are you sure you want to delete this todo?');
             if (!confirmDelete) return;
 
             try {
-                const response = await this.$http.delete(`http://localhost:5000/api/todo/${todoId}`);
+                // 從 Vuex store 獲取 token
+                const token = this.$store.getters.getToken;
+
+                // 檢查 token 是否存在，防止發送無效請求
+                if (!token) {
+                    console.error("No token found");
+                    return;
+                }
+
+                const response = await this.$http.delete(`http://localhost:5000/api/todo/${todo.id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+
+                // 根據後端的回應進行處理
                 if (response.status === 200) {
                     alert('Todo deleted successfully!');
                     this.getTodos(); // 重新取得列表

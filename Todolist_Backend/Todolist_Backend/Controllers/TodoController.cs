@@ -20,7 +20,7 @@ namespace Todolist_Backend.Controllers
         // 取得登入使用者的 Todo 列表
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetTodos([FromQuery] string? filter = "all")
+        public async Task<IActionResult> GetTodos([FromQuery] string? filter = "all", [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
@@ -49,7 +49,15 @@ namespace Todolist_Backend.Controllers
             }
 
             // 取得資料並返回
-            var todos = await query.OrderByDescending(t => t.CreatedAt).ToListAsync();
+            var totalItems = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            // 分頁處理
+            var todos = await query
+                .OrderByDescending(t => t.CreatedAt)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
 
             // 回傳 Todo 列表
             var todoModels = todos.Select(t => new TodoModel
@@ -62,7 +70,17 @@ namespace Todolist_Backend.Controllers
                 DueDate = t.DueDate
             }).ToList();
 
-            return Ok(todoModels);
+            // 包裝回傳格式
+            var result = new
+            {
+                items = todoModels,
+                currentPage = page,
+                pageSize = pageSize,
+                totalItems = totalItems,
+                totalPages = totalPages
+            };
+
+            return Ok(result);
         }
 
         // 更新完成狀態
@@ -121,7 +139,7 @@ namespace Todolist_Backend.Controllers
             _context.Todos.Add(todo);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Todo created successfully!", id = todo.Id });
+            return Ok("Todo created successfully!");
         }
 
         // 編輯 Todo
@@ -210,6 +228,38 @@ namespace Todolist_Backend.Controllers
             };
 
             return Ok(editTodoModel);
+        }
+
+        // 刪除 Todo
+        [Authorize]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTodo(int id)
+        {
+            // 確保有登入的用戶
+            var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
+
+            if (userId == 0)
+            {
+                return Unauthorized("User is not authenticated.");
+            }
+
+            // 找出 Todo
+            var todo = await _context.Todos.FindAsync(id);
+            if (todo == null)
+            {
+                return NotFound("Todo not found.");
+            }
+
+            // 確認是否為該使用者的 Todo
+            if (todo.UserId != userId)
+            {
+                return Forbid("You are not authorized to delete this Todo.");
+            }
+
+            _context.Todos.Remove(todo);
+            await _context.SaveChangesAsync();
+
+            return Ok("Todo deleted successfully.");
         }
     }
 }

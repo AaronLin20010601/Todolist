@@ -5,14 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\viewmodels\\getedittodomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\viewmodels\\getedittodomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\viewmodels\\todocreateupdatemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\viewmodels\\todocreateupdatemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,34 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GetEditTodoModel.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\ViewModels\\GetEditTodoModel.cs",
-              "RelativeDocumentMoniker": "Todolist_Backend\\ViewModels\\GetEditTodoModel.cs",
-              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\ViewModels\\GetEditTodoModel.cs",
-              "RelativeToolTip": "Todolist_Backend\\ViewModels\\GetEditTodoModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-11T03:15:48.905Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TodoCreateUpdateModel.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\ViewModels\\TodoCreateUpdateModel.cs",
-              "RelativeDocumentMoniker": "Todolist_Backend\\ViewModels\\TodoCreateUpdateModel.cs",
-              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\ViewModels\\TodoCreateUpdateModel.cs",
-              "RelativeToolTip": "Todolist_Backend\\ViewModels\\TodoCreateUpdateModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-11T02:26:02.102Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -58,7 +24,7 @@
               "RelativeDocumentMoniker": "Todolist_Backend\\Controllers\\TodoController.cs",
               "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\TodoController.cs",
               "RelativeToolTip": "Todolist_Backend\\Controllers\\TodoController.cs",
-              "ViewState": "AgIAALwAAAAAAAAAAAAcwNIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAO4AAAAAAAAAAAAiwAYBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-10T01:38:12.596Z",
               "EditorCaption": ""

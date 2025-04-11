@@ -102,19 +102,19 @@ export default {
             this.todo.dueDate = dueDateTime.toISOString();
 
             try {
-            const response = await this.$http.post('http://localhost:5000/api/todo', this.todo, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            });
-    
-            if (response.status === 200) {
-                // 創建成功，顯示訊息並返回 Todo 頁面
-                alert('Todo created successfully!');
-                this.$router.push('/todo'); // 假設返回 todo 頁面
-            } else {
-                this.errorMessage = response.data.message || 'Failed to create todo.';
-            }
+                const response = await this.$http.post('http://localhost:5000/api/todo', this.todo, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                });
+        
+                if (response.status === 200) {
+                    // 創建成功，顯示訊息並返回 Todo 頁面
+                    alert('Todo created successfully!');
+                    this.$router.push('/todo'); // 假設返回 todo 頁面
+                } else {
+                    this.errorMessage = response.data.message || 'Failed to create todo.';
+                }
             } catch (error) {
                 console.error('Error creating todo:', error);
                 this.errorMessage = 'An error occurred while creating the todo.';
