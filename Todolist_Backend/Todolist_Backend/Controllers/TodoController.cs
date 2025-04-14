@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Todolist_Backend.Models;
-using Todolist_Backend.ViewModels;
+using Todolist_Backend.Models.Entities;
+using Todolist_Backend.Models.DTOs;
 
 namespace Todolist_Backend.Controllers
 {
@@ -60,7 +61,7 @@ namespace Todolist_Backend.Controllers
                 .ToListAsync();
 
             // 回傳 Todo 列表
-            var todoModels = todos.Select(t => new TodoModel
+            var todoModels = todos.Select(t => new TodoDTO
             {
                 Id = t.Id,
                 Title = t.Title,
@@ -86,7 +87,7 @@ namespace Todolist_Backend.Controllers
         // 更新完成狀態
         [Authorize]
         [HttpPatch("{id}/complete")]
-        public async Task<IActionResult> UpdateTodoComplete(int id, [FromBody] UpdateCompleteModel model)
+        public async Task<IActionResult> UpdateTodoComplete(int id, [FromBody] UpdateCompleteDTO model)
         {
             var todo = await _context.Todos.FindAsync(id);
             if (todo == null)
@@ -103,7 +104,7 @@ namespace Todolist_Backend.Controllers
         // 新增 Todo
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> CreateTodo([FromBody] TodoEditModel model)
+        public async Task<IActionResult> CreateTodo([FromBody] TodoEditDTO model)
         {
             // 檢查標題是否為空
             if (string.IsNullOrWhiteSpace(model.Title))
@@ -145,7 +146,7 @@ namespace Todolist_Backend.Controllers
         // 編輯 Todo
         [Authorize]
         [HttpPatch("{id}")]
-        public async Task<IActionResult> EditTodo(int id, [FromBody] TodoEditModel model)
+        public async Task<IActionResult> EditTodo(int id, [FromBody] TodoEditDTO model)
         {
             // 檢查標題是否為空
             if (string.IsNullOrWhiteSpace(model.Title))
@@ -220,7 +221,7 @@ namespace Todolist_Backend.Controllers
             }
 
             // 將該 Todo 轉換成可編輯的資料模型
-            var editTodoModel = new TodoEditModel
+            var editTodoModel = new TodoEditDTO
             {
                 Title = todo.Title,
                 Description = todo.Description,

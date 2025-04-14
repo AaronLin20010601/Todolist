@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
+using Todolist_Backend.Models.Entities;
 
 namespace Todolist_Backend.Models
 {

@@ -1,4 +1,4 @@
-﻿namespace Todolist_Backend.Models
+﻿namespace Todolist_Backend.Models.Entities
 {
     public class EmailLog
     {

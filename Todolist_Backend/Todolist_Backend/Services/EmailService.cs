@@ -3,6 +3,7 @@ using Mailjet.Client.Resources;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using Todolist_Backend.Models;
+using Todolist_Backend.Models.Entities;
 using Todolist_Backend.Settings;
 
 namespace Todolist_Backend.Services

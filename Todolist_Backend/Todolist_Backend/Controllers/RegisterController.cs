@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Todolist_Backend.Models;
-using Todolist_Backend.ViewModels;
+using Todolist_Backend.Models.Entities;
+using Todolist_Backend.Models.DTOs;
 using Todolist_Backend.Services;
 
 namespace Todolist_Backend.Controllers
@@ -23,7 +24,7 @@ namespace Todolist_Backend.Controllers
 
         // 註冊流程的第一步 發送驗證碼到Email
         [HttpPost("send-verification-code")]
-        public async Task<IActionResult> SendVerificationCode([FromBody] EmailModel model)
+        public async Task<IActionResult> SendVerificationCode([FromBody] EmailDTO model)
         {
             // 檢查Email格式是否正確
             if (string.IsNullOrWhiteSpace(model.Email) || !model.Email.Contains('@'))
@@ -71,7 +72,7 @@ namespace Todolist_Backend.Controllers
 
         // 註冊流程的第二步 驗證驗證碼，並註冊用戶
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        public async Task<IActionResult> Register([FromBody] RegisterDTO model)
         {
             // 檢查註冊資料是否有效
             if (string.IsNullOrWhiteSpace(model.Email) || string.IsNullOrWhiteSpace(model.Username) ||

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Todolist_Backend.Models;
-using Todolist_Backend.ViewModels;
+using Todolist_Backend.Models.DTOs;
 
 namespace Todolist_Backend.Controllers
 {
@@ -37,7 +37,7 @@ namespace Todolist_Backend.Controllers
                 return NotFound("User not found."); 
             }
 
-            var accountModel = new AccountModel
+            var accountModel = new AccountDTO
             {
                 Username = user.Username
             };
@@ -48,7 +48,7 @@ namespace Todolist_Backend.Controllers
         // 編輯帳號資料
         [Authorize]
         [HttpPatch]
-        public async Task<IActionResult> UpdateAccount([FromBody] AccountModel model)
+        public async Task<IActionResult> UpdateAccount([FromBody] AccountDTO model)
         {
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");

@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using Todolist_Backend.Models;
+using Todolist_Backend.Models.Entities;
 
 namespace Todolist_Backend.Services
 {

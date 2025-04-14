@@ -1,6 +1,6 @@
-﻿namespace Todolist_Backend.ViewModels
+﻿namespace Todolist_Backend.Models.DTOs
 {
-    public class TodoEditModel
+    public class TodoEditDTO
     {
         public string Title { get; set; } = null!; // 標題
         public string? Description { get; set; } // 描述

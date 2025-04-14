@@ -1,6 +1,6 @@
-﻿namespace Todolist_Backend.ViewModels
+﻿namespace Todolist_Backend.Models.DTOs
 {
-    public class AccountModel
+    public class AccountDTO
     {
         public string Username { get; set; } = null!; // 用戶名
     }

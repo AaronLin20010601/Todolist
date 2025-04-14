@@ -1,6 +1,6 @@
-﻿namespace Todolist_Backend.ViewModels
+﻿namespace Todolist_Backend.Models.DTOs
 {
-    public class EmailModel
+    public class EmailDTO
     {
         public string Email { get; set; } = null!; // email
     }

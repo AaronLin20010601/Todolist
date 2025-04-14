@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Todolist_Backend.Models;
-using Todolist_Backend.ViewModels;
+using Todolist_Backend.Models.Entities;
+using Todolist_Backend.Models.DTOs;
 using Todolist_Backend.Services;
 
 namespace Todolist_Backend.Controllers
@@ -23,7 +24,7 @@ namespace Todolist_Backend.Controllers
 
         // 重設密碼流程第一步 輸入已註冊的Email，發送驗證碼
         [HttpPost("send-verification-code")]
-        public async Task<IActionResult> SendVerificationCode([FromBody] EmailModel model)
+        public async Task<IActionResult> SendVerificationCode([FromBody] EmailDTO model)
         {
             // 檢查Email格式是否正確
             if (string.IsNullOrWhiteSpace(model.Email) || !model.Email.Contains('@'))
@@ -71,7 +72,7 @@ namespace Todolist_Backend.Controllers
 
         // 重設密碼流程第二步 輸入驗證碼與新密碼，完成重設
         [HttpPost("reset-password")]
-        public async Task<IActionResult> ResetPassword([FromBody] ResetModel model)
+        public async Task<IActionResult> ResetPassword([FromBody] ResetDTO model)
         {
             // 檢查重設密碼是否相同
             if (string.IsNullOrWhiteSpace(model.Email) ||

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Todolist_Backend.Models;
+using Todolist_Backend.Models.DTOs;
 using Todolist_Backend.Services;
-using Todolist_Backend.ViewModels;
 
 namespace Todolist_Backend.Controllers
 {
@@ -20,7 +20,7 @@ namespace Todolist_Backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
             // 檢查 Email 是否存在
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
