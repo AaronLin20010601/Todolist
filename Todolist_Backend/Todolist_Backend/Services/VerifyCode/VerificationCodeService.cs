@@ -1,6 +1,6 @@
-﻿using Todolist_Backend.Services.Interfaces.Token;
+﻿using Todolist_Backend.Services.Interfaces.VerifyCode;
 
-namespace Todolist_Backend.Services.Token
+namespace Todolist_Backend.Services.VerifyCode
 {
     public class VerificationCodeService : IVerificationCodeService
     {

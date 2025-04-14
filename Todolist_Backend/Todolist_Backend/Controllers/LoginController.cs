@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Todolist_Backend.Models;
 using Todolist_Backend.Models.DTOs.Login;
-using Todolist_Backend.Services.Interfaces.Token;
+using Todolist_Backend.Services.Interfaces.Login;
 
 namespace Todolist_Backend.Controllers
 {
@@ -10,45 +8,32 @@ namespace Todolist_Backend.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly TodolistDbContext _context;
-        private readonly IJwtTokenService _jwtTokenService;
+        private readonly ILoginService _loginService;
 
-        public LoginController(TodolistDbContext context, IJwtTokenService jwtTokenService)
+        public LoginController(ILoginService loginService)
         {
-            _context = context;
-            _jwtTokenService = jwtTokenService;
+            _loginService = loginService;
         }
 
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
-            // 檢查 Email 是否存在
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
-            if (user == null)
+            var result = await _loginService.LoginAsync(model);
+            if (!result.Success)
             {
-                return BadRequest("Email not registered.");
+                return BadRequest(result.Message);
             }
-
-            // 檢查密碼是否正確
-            bool passwordValid = BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash);
-            if (!passwordValid)
-            {
-                return BadRequest("Password incorrect.");
-            }
-
-            // 生成 JWT 驗證碼
-            var token = _jwtTokenService.CreateJwtToken(user);
 
             // 登入成功
             return Ok(new
             {
-                message = "Login successful.",
-                token,
+                message = result.Message,
+                token = result.Token,
                 user = new
                 {
-                    user.Id,
-                    user.Username,
-                    user.Email
+                    result.User!.Id,
+                    result.User.Username,
+                    result.User.Email
                 }
             });
         }

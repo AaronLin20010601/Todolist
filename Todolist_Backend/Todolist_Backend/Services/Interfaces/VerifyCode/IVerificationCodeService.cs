@@ -1,4 +1,4 @@
-﻿namespace Todolist_Backend.Services.Interfaces.Token
+﻿namespace Todolist_Backend.Services.Interfaces.VerifyCode
 {
     public interface IVerificationCodeService
     {

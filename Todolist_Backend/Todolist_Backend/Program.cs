@@ -5,8 +5,16 @@ using Todolist_Backend.Models;
 using Todolist_Backend.Settings;
 using Todolist_Backend.Services.Interfaces.Email;
 using Todolist_Backend.Services.Interfaces.Token;
+using Todolist_Backend.Services.Interfaces.Login;
+using Todolist_Backend.Services.Interfaces.Register;
+using Todolist_Backend.Services.Interfaces.Reset;
 using Todolist_Backend.Services.Email;
 using Todolist_Backend.Services.Token;
+using Todolist_Backend.Services.Login;
+using Todolist_Backend.Services.Register;
+using Todolist_Backend.Services.Reset;
+using Todolist_Backend.Services.Interfaces.VerifyCode;
+using Todolist_Backend.Services.VerifyCode;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,11 +26,27 @@ builder.Services.AddDbContext<TodolistDbContext>(options =>
 builder.Services.Configure<MailjetSettings>(builder.Configuration.GetSection("Mailjet"));
 
 // µù¥U DI
+// Email Service
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IEmailLogger, EmailLogger>();
 builder.Services.AddScoped<IEmailService, EmailService>();
-builder.Services.AddScoped<IVerificationCodeService, VerificationCodeService>();
+
+// Token Service
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+
+// Verify Code service
+builder.Services.AddScoped<IVerificationCodeService, VerificationCodeService>();
+builder.Services.AddScoped<ISendRegisterVerifyService, SendRegisterVerifyService>();
+builder.Services.AddScoped<ISendResetVerifyService, SendResetVerifyService>();
+
+// Login Service
+builder.Services.AddScoped<ILoginService, LoginService>();
+
+// Register Service
+builder.Services.AddScoped<IRegisterService, RegisterService>();
+
+// Reset Service
+builder.Services.AddScoped<IResetPasswordService, ResetPasswordService>();
 
 // ¥[¤J JWT ÅçÃÒ
 builder.Services.AddAuthentication("Bearer")
