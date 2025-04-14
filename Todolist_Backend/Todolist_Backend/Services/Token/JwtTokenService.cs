@@ -3,23 +3,17 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Todolist_Backend.Models.Entities;
+using Todolist_Backend.Services.Interfaces.Token;
 
-namespace Todolist_Backend.Services
+namespace Todolist_Backend.Services.Token
 {
-    public class TokenService
+    public class JwtTokenService : IJwtTokenService
     {
         private readonly IConfiguration _config;
 
-        public TokenService(IConfiguration config)
+        public JwtTokenService(IConfiguration config)
         {
             _config = config;
-        }
-
-        // 生成隨機的驗證碼
-        public string GenerateVerificationCode()
-        {
-            var random = new Random();
-            return random.Next(100000, 999999).ToString(); // 生成6位數字
         }
 
         // 產生 JWT 驗證碼

@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Todolist_Backend.Models;
-using Todolist_Backend.Models.DTOs;
+using Todolist_Backend.Models.DTOs.Account;
 
 namespace Todolist_Backend.Controllers
 {

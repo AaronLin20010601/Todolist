@@ -1,4 +1,4 @@
-﻿namespace Todolist_Backend.Models.DTOs
+﻿namespace Todolist_Backend.Models.DTOs.Register
 {
     public class RegisterDTO
     {

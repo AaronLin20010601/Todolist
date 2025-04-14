@@ -2,8 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Todolist_Backend.Models;
 using Todolist_Backend.Models.Entities;
-using Todolist_Backend.Models.DTOs;
-using Todolist_Backend.Services;
+using Todolist_Backend.Models.DTOs.Register;
+using Todolist_Backend.Services.Interfaces.Email;
+using Todolist_Backend.Services.Interfaces.Token;
 
 namespace Todolist_Backend.Controllers
 {
@@ -13,13 +14,13 @@ namespace Todolist_Backend.Controllers
     {
         private readonly TodolistDbContext _context;
         private readonly IEmailService _emailService;
-        private readonly TokenService _tokenService;
+        private readonly IVerificationCodeService _verificationCodeService;
 
-        public RegisterController(TodolistDbContext context, IEmailService emailService, TokenService tokenService)
+        public RegisterController(TodolistDbContext context, IEmailService emailService, IVerificationCodeService verificationCodeService)
         {
             _context = context;
             _emailService = emailService;
-            _tokenService = tokenService;
+            _verificationCodeService = verificationCodeService;
         }
 
         // 註冊流程的第一步 發送驗證碼到Email
@@ -40,7 +41,7 @@ namespace Todolist_Backend.Controllers
             }
 
             // 生成驗證碼
-            var verificationCode = _tokenService.GenerateVerificationCode();
+            var verificationCode = _verificationCodeService.GenerateVerificationCode();
 
             // 生成 ResetToken 並存入資料庫
             var resetToken = new ResetToken

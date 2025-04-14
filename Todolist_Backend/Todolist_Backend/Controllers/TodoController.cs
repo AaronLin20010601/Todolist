@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Todolist_Backend.Models;
 using Todolist_Backend.Models.Entities;
-using Todolist_Backend.Models.DTOs;
+using Todolist_Backend.Models.DTOs.Todo;
 
 namespace Todolist_Backend.Controllers
 {

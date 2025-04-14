@@ -1,9 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using Todolist_Backend.Models;
-using Todolist_Backend.Settings;
-using Todolist_Backend.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Todolist_Backend.Models;
+using Todolist_Backend.Settings;
+using Todolist_Backend.Services.Interfaces.Email;
+using Todolist_Backend.Services.Interfaces.Token;
+using Todolist_Backend.Services.Email;
+using Todolist_Backend.Services.Token;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,9 +14,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodolistDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// µù¥U Settings
 builder.Services.Configure<MailjetSettings>(builder.Configuration.GetSection("Mailjet"));
+
+// µù¥U DI
+builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.AddScoped<IEmailLogger, EmailLogger>();
 builder.Services.AddScoped<IEmailService, EmailService>();
-builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<IVerificationCodeService, VerificationCodeService>();
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 
 // ¥[¤J JWT ÅçÃÒ
 builder.Services.AddAuthentication("Bearer")

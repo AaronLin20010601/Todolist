@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Todolist_Backend.Models;
-using Todolist_Backend.Models.DTOs;
-using Todolist_Backend.Services;
+using Todolist_Backend.Models.DTOs.Login;
+using Todolist_Backend.Services.Interfaces.Token;
 
 namespace Todolist_Backend.Controllers
 {
@@ -11,12 +11,12 @@ namespace Todolist_Backend.Controllers
     public class LoginController : ControllerBase
     {
         private readonly TodolistDbContext _context;
-        private readonly TokenService _tokenService;
+        private readonly IJwtTokenService _jwtTokenService;
 
-        public LoginController(TodolistDbContext context, TokenService tokenService)
+        public LoginController(TodolistDbContext context, IJwtTokenService jwtTokenService)
         {
             _context = context;
-            _tokenService = tokenService;
+            _jwtTokenService = jwtTokenService;
         }
 
         [HttpPost]
@@ -37,7 +37,7 @@ namespace Todolist_Backend.Controllers
             }
 
             // 生成 JWT 驗證碼
-            var token = _tokenService.CreateJwtToken(user);
+            var token = _jwtTokenService.CreateJwtToken(user);
 
             // 登入成功
             return Ok(new
