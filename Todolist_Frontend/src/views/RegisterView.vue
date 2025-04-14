@@ -116,6 +116,7 @@ export default {
         };
     },
     methods: {
+        // 發送驗證碼
         async sendVerificationCode() {
             this.errorMessage = "";
             try {
@@ -131,6 +132,7 @@ export default {
             }
         },
 
+        // 送出註冊資料
         async registerUser() {
             this.errorMessage = "";
 
@@ -153,6 +155,7 @@ export default {
                     payload
                 );
                 alert(response.data);
+                // 返回登入頁面
                 this.$router.push("/");
             } catch (error) {
                 console.error("Error registering user:", error);

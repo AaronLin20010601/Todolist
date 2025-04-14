@@ -91,6 +91,7 @@ export default {
         };
     },
     methods: {
+        // 發送驗證碼
         async sendVerificationCode() {
             this.errorMessage = "";
             try {
@@ -105,7 +106,8 @@ export default {
                 this.errorMessage = error.response?.data || "Failed to send verification code.";
             }
         },
-    
+        
+        // 送出重設密碼
         async resetPassword() {
             this.errorMessage = "";
     
@@ -127,7 +129,8 @@ export default {
                     payload
             );
                 alert(response.data);
-                this.$router.push("/"); // 或其他你想導向的頁面
+                // 返回登入頁面
+                this.$router.push("/");
             } catch (error) {
                 console.error("Error resetting password:", error);
                 this.errorMessage = error.response?.data || "Failed to reset password.";

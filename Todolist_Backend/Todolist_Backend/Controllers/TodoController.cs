@@ -103,7 +103,7 @@ namespace Todolist_Backend.Controllers
         // 新增 Todo
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> CreateTodo([FromBody] TodoCreateUpdateModel model)
+        public async Task<IActionResult> CreateTodo([FromBody] TodoEditModel model)
         {
             // 檢查標題是否為空
             if (string.IsNullOrWhiteSpace(model.Title))
@@ -145,7 +145,7 @@ namespace Todolist_Backend.Controllers
         // 編輯 Todo
         [Authorize]
         [HttpPatch("{id}")]
-        public async Task<IActionResult> EditTodo(int id, [FromBody] TodoCreateUpdateModel model)
+        public async Task<IActionResult> EditTodo(int id, [FromBody] TodoEditModel model)
         {
             // 檢查標題是否為空
             if (string.IsNullOrWhiteSpace(model.Title))
@@ -220,7 +220,7 @@ namespace Todolist_Backend.Controllers
             }
 
             // 將該 Todo 轉換成可編輯的資料模型
-            var editTodoModel = new GetEditTodoModel
+            var editTodoModel = new TodoEditModel
             {
                 Title = todo.Title,
                 Description = todo.Description,

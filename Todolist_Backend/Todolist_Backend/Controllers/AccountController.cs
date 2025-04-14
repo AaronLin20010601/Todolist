@@ -48,7 +48,7 @@ namespace Todolist_Backend.Controllers
         // 編輯帳號資料
         [Authorize]
         [HttpPatch]
-        public async Task<IActionResult> UpdateAccount([FromBody] AccountUpdateModel model)
+        public async Task<IActionResult> UpdateAccount([FromBody] AccountModel model)
         {
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
