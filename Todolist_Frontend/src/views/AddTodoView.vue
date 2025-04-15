@@ -5,34 +5,34 @@
         <!-- 新增 Todo 表單 -->
         <form @submit.prevent="createTodo" class="space-y-6">
             <div>
-            <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-            <input
-                v-model="todo.title"
-                type="text"
-                id="title"
-                required
-                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md"
-            />
+                <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+                <input
+                    v-model="todo.title"
+                    type="text"
+                    id="title"
+                    required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md"
+                />
             </div>
             
             <div>
-            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-            <textarea
-                v-model="todo.description"
-                id="description"
-                rows="4"
-                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md"
-            ></textarea>
+                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea
+                    v-model="todo.description"
+                    id="description"
+                    rows="4"
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md"
+                ></textarea>
             </div>
             
             <div>
-            <label for="dueDate" class="block text-sm font-medium text-gray-700">Due Date</label>
-            <input
-                v-model="todo.dueDate"
-                type="datetime-local"
-                id="dueDate"
-                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md"
-            />
+                <label for="dueDate" class="block text-sm font-medium text-gray-700">Due Date</label>
+                <input
+                    v-model="todo.dueDate"
+                    type="datetime-local"
+                    id="dueDate"
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md"
+                />
             </div>
             
             <div class="flex justify-between">

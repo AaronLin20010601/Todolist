@@ -34,7 +34,8 @@ PostgreSQL on cloud database Supabase
   
 - ResetToken:Tokens using on register and reset password.
   - Columns:Id, Token, Email, CreatedAt, ExpirationDate, IsUsed.
-  
+
+-----
 ## Features
 1. User registration and login:
   - Users can register by providing an email, username, password and verification code. A verification code email will be sent via Mailjet.
