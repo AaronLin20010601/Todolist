@@ -31,7 +31,7 @@ namespace Todolist_Backend.Controllers
         public async Task<IActionResult> ResetPassword([FromBody] ResetDTO model)
         {
             var result = await _resetService.ResetPasswordAsync(model);
-            return result.Success ? Ok(result.Message) : BadRequest(result.Message); ;
+            return result.Success ? Ok(result.Message) : BadRequest(result.Message);
         }
     }
 }

@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\controllers\\resetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\controllers\\resetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\controllers\\registercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\controllers\\registercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,46 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RegisterController.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\RegisterController.cs",
-              "RelativeDocumentMoniker": "Todolist_Backend\\Controllers\\RegisterController.cs",
-              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\RegisterController.cs",
-              "RelativeToolTip": "Todolist_Backend\\Controllers\\RegisterController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T08:19:08.145Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ResetController.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\ResetController.cs",
-              "RelativeDocumentMoniker": "Todolist_Backend\\Controllers\\ResetController.cs",
-              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\ResetController.cs",
-              "RelativeToolTip": "Todolist_Backend\\Controllers\\ResetController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAApAAAAAAAAAA==",
+              "Title": "TodoController.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\TodoController.cs",
+              "RelativeDocumentMoniker": "Todolist_Backend\\Controllers\\TodoController.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\TodoController.cs",
+              "RelativeToolTip": "Todolist_Backend\\Controllers\\TodoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T07:57:02.29Z",
+              "WhenOpened": "2025-04-15T01:39:24.301Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Program.cs",
               "RelativeDocumentMoniker": "Todolist_Backend\\Program.cs",
               "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Program.cs",
               "RelativeToolTip": "Todolist_Backend\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAADwAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAEMAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T06:49:47.796Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T06:49:47.796Z"
             }
           ]
         }

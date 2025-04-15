@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Todolist_Backend.Models;
 using Todolist_Backend.Models.DTOs.Account;
+using Todolist_Backend.Services.Interfaces.Account;
 
 namespace Todolist_Backend.Controllers
 {
@@ -9,11 +9,15 @@ namespace Todolist_Backend.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly TodolistDbContext _context;
+        private readonly IGetAccountService _getAccountService;
+        private readonly IUpdateAccountService _updateAccountService;
+        private readonly IDeleteAccountService _deleteAccountService;
 
-        public AccountController(TodolistDbContext context)
+        public AccountController(IGetAccountService getAccountService, IUpdateAccountService updateAccountService, IDeleteAccountService deleteAccountService)
         {
-            _context = context;
+            _getAccountService = getAccountService;
+            _updateAccountService = updateAccountService;
+            _deleteAccountService = deleteAccountService;
         }
 
         // 取得帳號可編輯資料
@@ -23,25 +27,14 @@ namespace Todolist_Backend.Controllers
         {
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
-
             if (userId == 0)
             {
                 return Unauthorized("User is not authenticated.");
             }
 
             // 找出用戶資料
-            var user = await _context.Users.FindAsync(userId);
-            if (user == null) 
-            { 
-                return NotFound("User not found."); 
-            }
-
-            var accountModel = new AccountDTO
-            {
-                Username = user.Username
-            };
-
-            return Ok(accountModel);
+            var account = await _getAccountService.GetAccountAsync(userId);
+            return account == null ? NotFound("User not found.") : Ok(account); ;
         }
 
         // 編輯帳號資料
@@ -51,28 +44,13 @@ namespace Todolist_Backend.Controllers
         {
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
-
             if (userId == 0) 
             { 
                 return Unauthorized("User is not authenticated."); 
             }
 
-            // 找出用戶資料
-            var user = await _context.Users.FindAsync(userId);
-            if (user == null) 
-            { 
-                return NotFound("User not found."); 
-            }
-
-            if (string.IsNullOrWhiteSpace(model.Username))
-            {
-                return BadRequest("Username cannot be empty.");
-            }
-
-            user.Username = model.Username;
-            await _context.SaveChangesAsync();
-
-            return Ok("Username updated successfully.");
+            var result = await _updateAccountService.UpdateAccountAsync(userId, model);
+            return result.Success ? Ok(result.Message) : BadRequest(result.Message); ;
         }
 
         // 刪除帳號
@@ -82,23 +60,13 @@ namespace Todolist_Backend.Controllers
         {
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
-
             if (userId == 0) 
             { 
                 return Unauthorized("User is not authenticated."); 
             }
 
-            // 找出用戶資料
-            var user = await _context.Users.FindAsync(userId);
-            if (user == null) 
-            { 
-                return NotFound("User not found."); 
-            }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return Ok("Account deleted successfully.");
+            var result = await _deleteAccountService.DeleteAccountAsync(userId);
+            return result.Success ? Ok(result.Message) : BadRequest(result.Message); ;
         }
     }
 }
