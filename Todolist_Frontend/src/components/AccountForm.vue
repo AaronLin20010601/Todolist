@@ -4,7 +4,7 @@
         <div>
             <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
             <input 
-                v-model="localUser.username" type="text" id="username" required
+                v-model="user.username" type="text" id="username" required
                 class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md" 
             />
         </div>
@@ -26,36 +26,36 @@
 </template>
   
 <script>
-import { updateAccount, deleteAccount } from '@/api/account'
+import { getAccount, updateAccount, deleteAccount } from '@/api/account'
   
 export default {
-    props: ['user'],
     data() {
         return {
-            localUser: { ...this.user },
+            user: {
+                username: '',
+            },
         }
     },
-    watch: {
-        user: {
-            handler(newVal) {
-                this.localUser = { ...newVal }
-            },
-            immediate: true,
-            deep: true
+    async created() {
+        try {
+            const response = await getAccount()
+            this.user = response
+        } catch (error) {
+            this.$emit('error', 'Failed to fetch user data.')
         }
     },
     methods: {
         // 更新 User
         async onSubmit() {
             // 驗證用戶名是否存在
-            if (!this.localUser.username.trim()) {
-                alert('Username is required.')
+            if (!this.user.username.trim()) {
+                this.$emit('Username is required.')
                 return
             }
     
             try {
                 // 編輯成功
-                await updateAccount(this.localUser)
+                await updateAccount(this.user)
                 alert('User updated successfully!')
                 this.$emit('updated')
             } catch (error) {
@@ -74,7 +74,7 @@ export default {
                 alert('Account deleted successfully.')
                 this.$emit('deleted')
             } catch (error) {
-                alert(error.message || 'Delete failed.')
+                this.$emit('error', error.message || 'Delete failed.')
             }
         }
     }
