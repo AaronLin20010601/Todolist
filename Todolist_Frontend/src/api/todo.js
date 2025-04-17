@@ -8,7 +8,7 @@ const getAuthHeaders = () => ({
 })
 
 // 取得 Todo 列表
-export const getTodos = async (filter, page, pageSize) => {
+export const fetchTodos = async (filter, page, pageSize) => {
     const response = await axios.get(`${API_URL}?filter=${filter}&page=${page}&pageSize=${pageSize}`, getAuthHeaders())
     return response.data
 }

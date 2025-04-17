@@ -57,13 +57,23 @@ export default {
             this.todo = {
                 title: result.title,
                 description: result.description,
-                dueDate: result.dueDate ? new Date(result.dueDate).toISOString().slice(0, 16) : '',
+                dueDate: result.dueDate ? this.formatLocalDateTime(result.dueDate) : '',
             }
         } catch (error) {
             this.$emit('error', 'Failed to fetch todo data.')
         }
     },
     methods: {
+        // 將時間轉換成時區時間
+        formatLocalDateTime(isoString) {
+            const date = new Date(isoString);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        },
         // 提交編輯後的 Todo
         async onSubmit() {
             // 驗證標題是否存在
@@ -94,4 +104,4 @@ export default {
         }
     }
 }
-</script>  
+</script>

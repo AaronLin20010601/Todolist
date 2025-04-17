@@ -6,7 +6,7 @@
         <EditTodoForm :todoId="todoId" @success="handleSuccess" @error="handleError" />
     
         <!-- 錯誤消息顯示區域 -->
-        <div v-if="errorMessage" class="mt-4 text-red-500"> {{ errorMessage }} </div>
+        <div v-if="errorMessage" class="mt-4 text-red-500">{{ errorMessage }}</div>
     </div>
 </template>
 
