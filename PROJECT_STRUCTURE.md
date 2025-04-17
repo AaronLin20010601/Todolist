@@ -101,3 +101,57 @@ Todolist_Backend/
 └── appsettings.json
 ```
 ## Frontend
+```
+Todolist_Frontend/
+├── src/
+│   ├── api/
+│   │   ├── account.js
+│   │   ├── login.js
+│   │   ├── register.js
+│   │   ├── reset.js
+│   │   └── todo.js
+│   │
+│   ├── assets/
+│   │   └── tailwind.css
+│   │
+│   ├── components/
+│   │   ├── shared/
+│   │   │   ├── Footer.vue
+│   │   │   └── Navbar.vue
+│   │   │
+│   │   ├── todo/
+│   │   │   ├── Pagination.vue
+│   │   │   ├── TodoFilterBar.vue
+│   │   │   └── TodoTable.vue
+│   │   │
+│   │   ├── AccountForm.vue
+│   │   ├── AddTodoForm.vue
+│   │   ├── EditTodoForm.vue
+│   │   ├── LoginForm.vue
+│   │   ├── RegisterForm.vue
+│   │   ├── ResetForm.vue
+│   │   └── VerificationForm.vue
+│   │
+│   ├── router/
+│   │   └── index.js
+│   │
+│   ├── store/
+│   │   └── index.js
+│   │
+│   ├── views/
+│   │   ├── todo/
+│   │   │   ├── AddTodoView.vue
+│   │   │   ├── EditTodoView.vue
+│   │   │   └── TodoView.vue
+│   │   │
+│   │   ├── AccountView.vue
+│   │   ├── LoginView.vue
+│   │   ├── RegisterView.vue
+│   │   └── ResetView.vue
+│   │
+│   ├── App.vue
+│   └── main.js
+│
+├── package.json
+└── tailwind.config.js
+```
