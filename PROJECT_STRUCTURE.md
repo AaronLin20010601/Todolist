@@ -15,14 +15,18 @@ Todolist_Backend/
 │   ├── DTOs/
 │   │   ├── Account/
 │   │   │   └── AccountDTO.cs
+│   │   │
 │   │   ├── Login/
 │   │   │   └── LoginDTO.cs
+│   │   │
 │   │   ├── Register/
 │   │   │   ├── EmailDTO.cs
 │   │   │   └── RegisterDTO.cs
+│   │   │
 │   │   ├── Reset/
 │   │   │   ├── EmailDTO.cs
 │   │   │   └── ResetDTO.cs
+│   │   │
 │   │   └── Todo/
 │   │       ├── EditStatusDTO.cs
 │   │       ├── TodoDTO.cs
@@ -43,16 +47,21 @@ Todolist_Backend/
 │   │   │   ├── IDeleteAccountService.cs
 │   │   │   ├── IGetAccountService.cs
 │   │   │   └── IUpdateAccountService.cs
+│   │   │
 │   │   ├── Email/
 │   │   │   ├── IEmailLogger.cs
 │   │   │   ├── IEmailSender.cs
 │   │   │   └── IEmailService.cs
+│   │   │
 │   │   ├── Login/
 │   │   │   └── ILoginService.cs
+│   │   │
 │   │   ├── Register/
 │   │   │   └── IRegisterService.cs
+│   │   │
 │   │   ├── Reset/
 │   │   │   └── IResetPasswordService.cs
+│   │   │
 │   │   ├── Todo/
 │   │   │   ├── ICreateTodoService.cs
 │   │   │   ├── IDeleteTodoService.cs
@@ -60,8 +69,10 @@ Todolist_Backend/
 │   │   │   ├── IGetEditService.cs
 │   │   │   ├── IGetTodoService.cs
 │   │   │   └── IUpdateCompleteService.cs
+│   │   │
 │   │   ├── Token/
 │   │   │   └── IJwtTokenService.cs
+│   │   │
 │   │   └── VerifyCode/
 │   │       ├── ISendRegisterVerifyService.cs
 │   │       ├── ISendResetVerifyService.cs
@@ -71,16 +82,21 @@ Todolist_Backend/
 │   │   ├── DeleteAccountService.cs
 │   │   ├── GetAccountService.cs
 │   │   └── UpdateAccountService.cs
+│   │
 │   ├── Email/
 │   │   ├── EmailLogger.cs
 │   │   ├── EmailSender.cs
 │   │   └── EmailService.cs
+│   │
 │   ├── Login/
 │   │   └── LoginService.cs
+│   │
 │   ├── Register/
 │   │   └── RegisterService.cs
+│   │
 │   ├── Reset/
 │   │   └── ResetPasswordService.cs
+│   │
 │   ├── Todo/
 │   │   ├── CreateTodoService.cs
 │   │   ├── DeleteTodoService.cs
@@ -88,8 +104,10 @@ Todolist_Backend/
 │   │   ├── GetEditService.cs
 │   │   ├── GetTodoService.cs
 │   │   └── UpdateCompleteService.cs
+│   │
 │   ├── Token/
 │   │   └── JwtTokenService.cs
+│   │
 │   └── VerifyCode/
 │       ├── SendRegisterVerifyService.cs
 │       ├── SendResetVerifyService.cs
