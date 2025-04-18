@@ -16,14 +16,6 @@ namespace Todolist_Backend.Services.Reset
 
         public async Task<(bool Success, string Message)> ResetPasswordAsync(ResetDTO model)
         {
-            // 檢查重設密碼是否相同
-            if (string.IsNullOrWhiteSpace(model.Email) ||
-                string.IsNullOrWhiteSpace(model.Password) ||
-                model.Password != model.ConfirmPassword)
-            {
-                return (false, "Invalid reset data.");
-            }
-
             // 查找ResetToken，確認Email和驗證碼
             var resetToken = await _context.ResetTokens
                 .FirstOrDefaultAsync(rt => rt.Email == model.Email && rt.Token == model.VerificationCode && !rt.IsUsed);

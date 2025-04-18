@@ -36,16 +36,6 @@ namespace Todolist_Backend.Services.Todo
                 };
             }
 
-            // 檢查標題是否為空
-            if (string.IsNullOrWhiteSpace(model.Title))
-            {
-                return new EditStatusDTO
-                {
-                    Status = EditTodoStatus.BadRequest,
-                    Message = "Title is required."
-                };
-            }
-
             // 檢查 DueDate 是否小於當前時間
             if (model.DueDate.HasValue && model.DueDate.Value < DateTime.UtcNow)
             {

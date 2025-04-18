@@ -17,13 +17,6 @@ namespace Todolist_Backend.Services.Register
 
         public async Task<(bool Success, string Message)> RegisterAsync(RegisterDTO model)
         {
-            // 檢查註冊資料是否有效
-            if (string.IsNullOrWhiteSpace(model.Email) || string.IsNullOrWhiteSpace(model.Username) ||
-                string.IsNullOrWhiteSpace(model.Password) || model.Password != model.ConfirmPassword)
-            {
-                return (false, "Invalid registration data.");
-            }
-
             // 查找ResetToken，確認Email和驗證碼
             var resetToken = await _context.ResetTokens
                 .FirstOrDefaultAsync(rt => rt.Email == model.Email && rt.Token == model.VerificationCode && !rt.IsUsed);

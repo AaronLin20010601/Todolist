@@ -15,12 +15,6 @@ namespace Todolist_Backend.Services.Todo
 
         public async Task<(bool Success, string Message)> CreateTodoAsync(int userId, TodoEditDTO model)
         {
-            // 檢查標題是否為空
-            if (string.IsNullOrWhiteSpace(model.Title))
-            {
-                return (false, "Title is required.");
-            }
-
             // 檢查 DueDate 是否小於當前時間
             if (model.DueDate.HasValue && model.DueDate.Value < DateTime.UtcNow)
             {
