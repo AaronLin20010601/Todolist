@@ -6,7 +6,7 @@
     
         <!-- 發送驗證碼表單 -->
         <VerificationForm
-            v-if="step === 1" :email="email" :sendCodeApi="sendVerificationCode"
+            v-if="step === 1" :email="email" :sendCodeApi="sendResetVerificationCode"
             @update:email="email = $event" @success="step = 2"
         />
 
@@ -18,7 +18,7 @@
 <script>
 import VerificationForm from '@/components/VerificationForm.vue';
 import ResetForm from '@/components/ResetForm.vue';
-import { sendVerificationCode } from '@/api/reset';
+import { sendResetVerificationCode } from '@/api/verification';
 
 export default {
     components: {
@@ -32,7 +32,7 @@ export default {
         };
     },
     methods: {
-        sendVerificationCode,
+        sendResetVerificationCode,
         // 重設成功後前往登入頁面
         handleSuccess() {
             this.$router.push('/')

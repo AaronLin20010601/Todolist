@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Todolist_Backend.Models.DTOs.Register
+namespace Todolist_Backend.Models.DTOs.Verification
 {
     public class EmailDTO
     {

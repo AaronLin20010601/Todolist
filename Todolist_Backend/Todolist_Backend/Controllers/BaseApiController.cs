@@ -6,6 +6,7 @@ namespace Todolist_Backend.Controllers
     [ApiController]
     public class BaseApiController : ControllerBase
     {
+        // 共用錯誤訊息回應
         protected IActionResult ModelStateErrorResponse()
         {
             var errors = ModelState.Values

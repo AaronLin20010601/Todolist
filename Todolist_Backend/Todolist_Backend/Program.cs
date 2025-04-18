@@ -41,9 +41,9 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 
 // Verify Code service
-builder.Services.AddScoped<IVerificationCodeService, VerificationCodeService>();
-builder.Services.AddScoped<ISendRegisterVerifyService, SendRegisterVerifyService>();
-builder.Services.AddScoped<ISendResetVerifyService, SendResetVerifyService>();
+builder.Services.AddScoped<IVerificationCode, VerificationCode>();
+builder.Services.AddScoped<IRegisterVerificationService, RegisterVerificationService>();
+builder.Services.AddScoped<IResetVerificationService, ResetVerificationService>();
 
 // Login Service
 builder.Services.AddScoped<ILoginService, LoginService>();

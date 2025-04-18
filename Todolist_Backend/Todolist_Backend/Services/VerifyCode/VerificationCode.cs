@@ -2,7 +2,7 @@
 
 namespace Todolist_Backend.Services.VerifyCode
 {
-    public class VerificationCodeService : IVerificationCodeService
+    public class VerificationCode : IVerificationCode
     {
         // 生成隨機的驗證碼
         public string GenerateVerificationCode()

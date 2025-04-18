@@ -2,6 +2,9 @@
 {
     public interface IVerificationCodeService
     {
-        string GenerateVerificationCode();
+        Task<(bool Success, string Message)> SendVerificationCodeAsync(string email);
     }
+
+    public interface IRegisterVerificationService : IVerificationCodeService { }
+    public interface IResetVerificationService : IVerificationCodeService { }
 }

@@ -6,13 +6,13 @@ using Todolist_Backend.Services.Interfaces.VerifyCode;
 
 namespace Todolist_Backend.Services.VerifyCode
 {
-    public class SendResetVerifyService : ISendResetVerifyService
+    public class ResetVerificationService : IResetVerificationService
     {
         private readonly TodolistDbContext _context;
         private readonly IEmailService _emailService;
-        private readonly IVerificationCodeService _verificationCodeService;
+        private readonly IVerificationCode _verificationCodeService;
 
-        public SendResetVerifyService(TodolistDbContext context, IEmailService emailService, IVerificationCodeService verificationCodeService)
+        public ResetVerificationService(TodolistDbContext context, IEmailService emailService, IVerificationCode verificationCodeService)
         {
             _context = context;
             _emailService = emailService;

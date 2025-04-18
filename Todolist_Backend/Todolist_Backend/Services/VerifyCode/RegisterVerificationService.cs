@@ -6,13 +6,13 @@ using Todolist_Backend.Services.Interfaces.VerifyCode;
 
 namespace Todolist_Backend.Services.VerifyCode
 {
-    public class SendRegisterVerifyService : ISendRegisterVerifyService
+    public class RegisterVerificationService : IRegisterVerificationService
     {
         private readonly TodolistDbContext _context;
         private readonly IEmailService _emailService;
-        private readonly IVerificationCodeService _verificationCodeService;
+        private readonly IVerificationCode _verificationCodeService;
 
-        public SendRegisterVerifyService(TodolistDbContext context, IEmailService emailService, IVerificationCodeService verificationCodeService)
+        public RegisterVerificationService(TodolistDbContext context, IEmailService emailService, IVerificationCode verificationCodeService)
         {
             _context = context;
             _emailService = emailService;
