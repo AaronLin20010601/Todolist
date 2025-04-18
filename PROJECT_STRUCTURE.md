@@ -9,7 +9,8 @@ Todolist_Backend/
 │   ├── LoginController.cs
 │   ├── RegisterController.cs
 │   ├── ResetController.cs
-│   └── TodoController.cs
+│   ├── TodoController.cs
+│   └── VerificationController.cs
 │
 ├── Models/
 │   ├── DTOs/
@@ -20,18 +21,19 @@ Todolist_Backend/
 │   │   │   └── LoginDTO.cs
 │   │   │
 │   │   ├── Register/
-│   │   │   ├── EmailDTO.cs
 │   │   │   └── RegisterDTO.cs
 │   │   │
 │   │   ├── Reset/
-│   │   │   ├── EmailDTO.cs
 │   │   │   └── ResetDTO.cs
 │   │   │
-│   │   └── Todo/
-│   │       ├── EditStatusDTO.cs
-│   │       ├── TodoDTO.cs
-│   │       ├── TodoEditDTO.cs
-│   │       └── UpdateCompleteDTO.cs
+│   │   ├── Todo/
+│   │   │   ├── EditStatusDTO.cs
+│   │   │   ├── TodoDTO.cs
+│   │   │   ├── TodoEditDTO.cs
+│   │   │   └── UpdateCompleteDTO.cs
+│   │   │
+│   │   └── Verification/
+│   │       └── EmailDTO.cs
 │   │
 │   ├── Entities/
 │   │   ├── EmailLog.cs
@@ -74,8 +76,7 @@ Todolist_Backend/
 │   │   │   └── IJwtTokenService.cs
 │   │   │
 │   │   └── VerifyCode/
-│   │       ├── ISendRegisterVerifyService.cs
-│   │       ├── ISendResetVerifyService.cs
+│   │       ├── IVerificationCode.cs
 │   │       └── IVerificationCodeService.cs
 │   │
 │   ├── Account/
@@ -109,9 +110,9 @@ Todolist_Backend/
 │   │   └── JwtTokenService.cs
 │   │
 │   └── VerifyCode/
-│       ├── SendRegisterVerifyService.cs
-│       ├── SendResetVerifyService.cs
-│       └── VerificationCodeService.cs
+│       ├── RegisterVerificationService.cs
+│       ├── ResetVerificationService.cs
+│       └── VerificationCode.cs
 │
 ├── Settings/
 │   └── MailjetSettings.cs
@@ -128,7 +129,8 @@ Todolist_Frontend/
 │   │   ├── login.js
 │   │   ├── register.js
 │   │   ├── reset.js
-│   │   └── todo.js
+│   │   ├── todo.js
+│   │   └── verification.js
 │   │
 │   ├── assets/
 │   │   └── tailwind.css
