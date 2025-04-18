@@ -7,7 +7,7 @@ namespace Todolist_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TodoController : ControllerBase
+    public class TodoController : BaseApiController
     {
         private readonly IGetTodosService _getTodosService;
         private readonly IUpdateCompleteService _updateCompleteService;
@@ -41,7 +41,7 @@ namespace Todolist_Backend.Controllers
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
             if (userId == 0)
             {
-                return Unauthorized("User is not authenticated.");
+                return Unauthorized(new { Message = "User is not authenticated." });
             }
 
             var data = await _getTodosService.GetTodosAsync(userId, filter, page, pageSize);
@@ -57,7 +57,7 @@ namespace Todolist_Backend.Controllers
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
             if (userId == 0)
             {
-                return Unauthorized("User is not authenticated.");
+                return Unauthorized(new { Message = "User is not authenticated." });
             }
 
             var success = await _updateCompleteService.UpdateCompleteAsync(id, model.IsCompleted);
@@ -69,15 +69,20 @@ namespace Todolist_Backend.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTodo([FromBody] TodoEditDTO model)
         {
+            if (!ModelState.IsValid)
+            {
+                return ModelStateErrorResponse();
+            }
+
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
             if (userId == 0)
             {
-                return Unauthorized("User is not authenticated.");
+                return Unauthorized(new { Message = "User is not authenticated." });
             }
 
             var result = await _createTodoService.CreateTodoAsync(userId, model);
-            return result.Success ? Ok(result.Message) : BadRequest(result.Message);
+            return result.Success ? Ok(result.Message) : BadRequest(new { Message = result.Message });
         }
 
         // 取得要被編輯的 Todo
@@ -89,11 +94,11 @@ namespace Todolist_Backend.Controllers
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
             if (userId == 0)
             {
-                return Unauthorized("User is not authenticated.");
+                return Unauthorized(new { Message = "User is not authenticated." });
             }
 
             var result = await _getEditService.GetEditAsync(userId, id);
-            return result.Success ? Ok(result.Data) : (result.Forbidden ? Forbid(result.Message) : NotFound(result.Message));
+            return result.Success ? Ok(result.Data) : (result.Forbidden ? Forbid(result.Message) : NotFound(new { Message = result.Message }));
         }
 
         // 編輯 Todo
@@ -101,19 +106,24 @@ namespace Todolist_Backend.Controllers
         [HttpPatch("{id}")]
         public async Task<IActionResult> EditTodo(int id, [FromBody] TodoEditDTO model)
         {
+            if (!ModelState.IsValid)
+            {
+                return ModelStateErrorResponse();
+            }
+
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
             if (userId == 0)
             {
-                return Unauthorized("User is not authenticated.");
+                return Unauthorized(new { Message = "User is not authenticated." });
             }
 
             var result = await _editTodoService.EditTodoAsync(userId, id, model);
             return result switch
             {
-                { Status: EditTodoStatus.NotFound } => NotFound(result.Message),
+                { Status: EditTodoStatus.NotFound } => NotFound(new { Message = result.Message }),
                 { Status: EditTodoStatus.Forbidden } => Forbid(result.Message),
-                { Status: EditTodoStatus.BadRequest } => BadRequest(result.Message),
+                { Status: EditTodoStatus.BadRequest } => BadRequest(new { Message = result.Message }),
                 _ => Ok(result.Message)
             };
         }
@@ -127,11 +137,11 @@ namespace Todolist_Backend.Controllers
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
             if (userId == 0)
             {
-                return Unauthorized("User is not authenticated.");
+                return Unauthorized(new { Message = "User is not authenticated." });
             }
 
             var result = await _deleteTodoService.DeleteTodoAsync(userId, id);
-            return result.Success ? Ok(result.Message) : (result.Forbidden ? Forbid(result.Message) : NotFound(result.Message));
+            return result.Success ? Ok(result.Message) : (result.Forbidden ? Forbid(result.Message) : NotFound(new { Message = result.Message }));
         }
     }
 }

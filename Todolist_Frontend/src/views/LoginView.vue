@@ -3,10 +3,7 @@
         <h2 class="text-2xl font-bold text-center mb-4">Login</h2>
         
         <!-- 登入表單 -->
-        <LoginForm @success="handleSuccess" @error="handleError" />
-
-        <!-- 錯誤消息顯示區域 -->
-        <div v-if="errorMessage" class="text-red-500 text-sm mt-4">{{ errorMessage }}</div>
+        <LoginForm @success="handleSuccess"/>
     </div>
 </template>
 
@@ -15,20 +12,11 @@ import LoginForm from '@/components/LoginForm.vue'
 
 export default {
     components: { LoginForm },
-    data() {
-        return {
-            errorMessage: "",
-        };
-    },
     methods: {
         // 登入成功後進入 Todo
         handleSuccess({ token, user }) {
-            this.errorMessage = ''
             this.$store.dispatch('login', { token, user })
             this.$router.push('/todo')
-        },
-        handleError(message) {
-            this.errorMessage = message
         }
     },
 };

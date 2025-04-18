@@ -21,8 +21,13 @@ export const toggleTodoComplete = async (id, isCompleted) => {
 
 // 建立新的 Todo
 export const createTodo = async (todo) => {
-    const response = await axios.post(API_URL, todo, getAuthHeaders())
-    return response.data
+    try {
+        const response = await axios.post(API_URL, todo, getAuthHeaders())
+        return response.data
+    }
+    catch (error) {
+        throw error
+    }
 }
 
 // 取得待編輯的 Todo
@@ -33,8 +38,13 @@ export const getEditTodo = async (id) => {
 
 // 更新 Todo
 export const updateTodo = async (id, todo) => {
-    const response = await axios.patch(`${API_URL}/${id}`, todo, getAuthHeaders())
-    return response.data
+    try {
+        const response = await axios.patch(`${API_URL}/${id}`, todo, getAuthHeaders())
+        return response.data
+    }
+    catch (error) {
+        throw error
+    }
 }
 
 // 刪除 Todo

@@ -5,6 +5,10 @@
         
         <!-- 篩選和新增按鈕區塊 -->
         <TodoFilterBar :filter="filter" @filter-change="onFilterChange" />
+
+        <!-- 錯誤消息顯示區域 -->
+        <div v-if="errorMessage" class="text-red-500 text-sm mb-4">{{ errorMessage }}</div>
+
         <!-- Todo 列表 -->
         <TodoTable :todos="todos" @reload="getTodos" />
         <!-- 分頁按鈕 -->
@@ -17,6 +21,7 @@ import TodoFilterBar from '@/components/todo/TodoFilterBar.vue';
 import TodoTable from '@/components/todo/TodoTable.vue';
 import Pagination from '@/components/todo/Pagination.vue';
 import { fetchTodos } from '@/api/todo';
+import errorService from '@/service/errorService';
 
 export default {
     components: { TodoFilterBar, TodoTable, Pagination },
@@ -27,6 +32,7 @@ export default {
             page: 1,
             pageSize: 10,
             totalPages: 1,
+            errorMessage: ''
         };
     },
     methods: {
@@ -42,7 +48,7 @@ export default {
                 this.totalPages = data.totalPages;
                 this.page = data.currentPage;
             } catch (error) {
-                console.error('Error fetching todos:', error);
+                this.errorMessage = errorService.handleError(error) || 'Error fetching todos'
             }
         },
 

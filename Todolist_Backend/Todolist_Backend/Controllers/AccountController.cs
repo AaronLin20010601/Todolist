@@ -7,7 +7,7 @@ namespace Todolist_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountController : BaseApiController
     {
         private readonly IGetAccountService _getAccountService;
         private readonly IUpdateAccountService _updateAccountService;
@@ -29,12 +29,12 @@ namespace Todolist_Backend.Controllers
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
             if (userId == 0)
             {
-                return Unauthorized("User is not authenticated.");
+                return Unauthorized(new { Message = "User is not authenticated." });
             }
 
             // 找出用戶資料
             var account = await _getAccountService.GetAccountAsync(userId);
-            return account == null ? NotFound("User not found.") : Ok(account); ;
+            return account == null ? NotFound(new { Message = "User not found." }) : Ok(account); ;
         }
 
         // 編輯帳號資料
@@ -42,15 +42,20 @@ namespace Todolist_Backend.Controllers
         [HttpPatch]
         public async Task<IActionResult> UpdateAccount([FromBody] AccountDTO model)
         {
+            if (!ModelState.IsValid) 
+            { 
+                return ModelStateErrorResponse(); 
+            }
+
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
             if (userId == 0) 
             { 
-                return Unauthorized("User is not authenticated."); 
+                return Unauthorized(new { Message = "User is not authenticated." });
             }
 
             var result = await _updateAccountService.UpdateAccountAsync(userId, model);
-            return result.Success ? Ok(result.Message) : BadRequest(result.Message); ;
+            return result.Success ? Ok(result.Message) : BadRequest(new { Message = result.Message });
         }
 
         // 刪除帳號
@@ -62,11 +67,11 @@ namespace Todolist_Backend.Controllers
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
             if (userId == 0) 
             { 
-                return Unauthorized("User is not authenticated."); 
+                return Unauthorized(new { Message = "User is not authenticated." }); 
             }
 
             var result = await _deleteAccountService.DeleteAccountAsync(userId);
-            return result.Success ? Ok(result.Message) : BadRequest(result.Message); ;
+            return result.Success ? Ok(result.Message) : BadRequest(new { Message = result.Message }); ;
         }
     }
 }

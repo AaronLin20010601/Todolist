@@ -17,7 +17,10 @@
                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
             />
         </div>
-    
+        
+        <!-- 錯誤消息顯示區域 -->
+        <div v-if="errorMessage" class="text-red-500 text-sm mt-4">{{ errorMessage }}</div>
+
         <!-- 登入按鈕 -->
         <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
         Login
@@ -27,22 +30,18 @@
   
 <script>
 import { login } from '@/api/login'
+import errorService from '@/service/errorService';
   
 export default {
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            errorMessage: ''
         }
     },
     methods: {
-        async loginUser() {
-            // 檢查 email 和密碼的有效性
-            if (!this.email || !this.password) {
-                this.$emit('error', 'Both fields are required.')
-                return
-            }
-    
+        async loginUser() {   
             try {
                 // 發送登入請求到後端，並獲取 JWT
                 const { token, user, message } = await login(this.email, this.password)
@@ -50,12 +49,9 @@ export default {
                 if (token && user) {
                     // 登入成功
                     this.$emit('success', { token, user })
-                } else {
-                    this.$emit('error', message || 'Login failed.')
                 }
             } catch (error) {
-                console.error('Login error:', error)
-                this.$emit('error', error.response?.data || 'Login failed.')
+                this.errorMessage = errorService.handleError(error) || 'Login failed.';
             }
         }
     }

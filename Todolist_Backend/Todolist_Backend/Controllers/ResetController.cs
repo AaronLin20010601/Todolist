@@ -7,7 +7,7 @@ namespace Todolist_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ResetController : ControllerBase
+    public class ResetController : BaseApiController
     {
         private readonly ISendResetVerifyService _sendResetVerifyService;
         private readonly IResetPasswordService _resetService;
@@ -22,16 +22,26 @@ namespace Todolist_Backend.Controllers
         [HttpPost("send-verification-code")]
         public async Task<IActionResult> SendVerificationCode([FromBody] EmailDTO model)
         {
+            if (!ModelState.IsValid)
+            {
+                return ModelStateErrorResponse();
+            }
+
             var result = await _sendResetVerifyService.SendVerificationCodeAsync(model.Email);
-            return result.Success ? Ok(result.Message) : BadRequest(result.Message);
+            return result.Success ? Ok(result.Message) : BadRequest(new { Message = result.Message });
         }
 
         // 重設密碼流程第二步 輸入驗證碼與新密碼，完成重設
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetDTO model)
         {
+            if (!ModelState.IsValid)
+            {
+                return ModelStateErrorResponse();
+            }
+
             var result = await _resetService.ResetPasswordAsync(model);
-            return result.Success ? Ok(result.Message) : BadRequest(result.Message);
+            return result.Success ? Ok(result.Message) : BadRequest(new { Message = result.Message });
         }
     }
 }

@@ -16,9 +16,9 @@
 </template>
   
 <script>
-import VerificationForm from "@/components/VerificationForm.vue";
-import ResetForm from "@/components/ResetForm.vue";
-import { sendVerificationCode } from "@/api/reset";
+import VerificationForm from '@/components/VerificationForm.vue';
+import ResetForm from '@/components/ResetForm.vue';
+import { sendVerificationCode } from '@/api/reset';
 
 export default {
     components: {
@@ -28,7 +28,7 @@ export default {
     data() {
         return {
             step: 1,
-            email: "",
+            email: '',
         };
     },
     methods: {

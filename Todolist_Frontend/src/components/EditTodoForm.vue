@@ -24,6 +24,9 @@
                 class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md" 
             />
         </div>
+
+        <!-- 錯誤消息顯示區域 -->
+        <div v-if="errorMessage" class="mt-4 text-red-500">{{ errorMessage }}</div>
     
         <div class="flex justify-between">
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
@@ -39,6 +42,7 @@
   
 <script>
 import { getEditTodo, updateTodo } from '@/api/todo'
+import errorService from '@/service/errorService';
   
 export default {
     props: ['todoId'],
@@ -47,8 +51,9 @@ export default {
             todo: {
                 title: '',
                 description: '',
-                dueDate: '',
-            }
+                dueDate: ''
+            },
+            errorMessage: ''
         }
     },
     async created() {
@@ -60,7 +65,7 @@ export default {
                 dueDate: result.dueDate ? this.formatLocalDateTime(result.dueDate) : '',
             }
         } catch (error) {
-            this.$emit('error', 'Failed to fetch todo data.')
+            this.errorMessage = errorService.handleError(error) || 'Failed to fetch todo data.'
         }
     },
     methods: {
@@ -75,22 +80,15 @@ export default {
             return `${year}-${month}-${day}T${hours}:${minutes}`;
         },
         // 提交編輯後的 Todo
-        async onSubmit() {
-            // 驗證標題是否存在
-            if (!this.todo.title.trim()) {
-                this.$emit('error', 'Title is required.')
-                return
-            }
-    
+        async onSubmit() {   
             let now = new Date()
             let dueDateTime = this.todo.dueDate ? new Date(this.todo.dueDate) : new Date(now.getTime() + 86400000)
-            
+
             // 檢查選擇的時間是否早於現在
             if (dueDateTime < now) {
-                this.$emit('error', 'Due date and time cannot be in the past.')
-                return
+                this.errorMessage = 'Due date and time cannot be in the past.';
+                return;
             }
-    
             this.todo.dueDate = dueDateTime.toISOString()
     
             try {
@@ -99,7 +97,7 @@ export default {
                 alert('Todo updated successfully!')
                 this.$emit('success')
             } catch (error) {
-                this.$emit('error', error.message || 'An error occurred while updating the todo.')
+                this.errorMessage = errorService.handleError(error) || 'An error occurred while updating the todo.'
             }
         }
     }

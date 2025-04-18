@@ -51,7 +51,8 @@
 </template>
   
 <script>
-import { register } from "@/api/register";
+import { register } from '@/api/register';
+import errorService from '@/service/errorService';
   
 export default {
     props: {
@@ -60,26 +61,18 @@ export default {
             required: true
         }
     },
-    emits: ["success"],
+    emits: ['success'],
     data() {
         return {
-            username: "",
-            password: "",
-            confirmPassword: "",
-            verificationCode: "",
-            errorMessage: ""
+            username: '',
+            password: '',
+            confirmPassword: '',
+            verificationCode: '',
+            errorMessage: ''
         };
     },
     methods: {
-        async handleRegister() {
-            this.errorMessage = "";
-            
-            // 檢查密碼
-            if (this.password !== this.confirmPassword) {
-                this.errorMessage = "Passwords do not match.";
-                return;
-            }
-    
+        async handleRegister() {   
             try {
                 // 送出註冊資料
                 const response = await register({
@@ -91,9 +84,9 @@ export default {
                 });
     
                 alert(response);
-                this.$emit("success");
+                this.$emit('success');
             } catch (error) {
-                this.errorMessage = error.response?.data || "Failed to register.";
+                this.errorMessage = errorService.handleError(error) || 'Failed to register.';
             }
         }
     }

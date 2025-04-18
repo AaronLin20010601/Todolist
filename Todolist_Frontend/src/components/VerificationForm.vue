@@ -19,6 +19,8 @@
 </template>
   
 <script>
+import errorService from '@/service/errorService';
+
 export default {
     props: {
         email: String,
@@ -27,24 +29,23 @@ export default {
             required: true
         }
     },
-    emits: ["success", "update:email"],
+    emits: ['success', 'update:email'],
     data() {
         return {
-            localEmail: this.email || "",
-            errorMessage: ""
+            localEmail: this.email || '',
+            errorMessage: ''
         };
     },
     methods: {
         async handleSendCode() {
-            this.errorMessage = "";
             try {
                 // 發送驗證碼
                 const response = await this.sendCodeApi(this.localEmail);
                 alert(response);
-                this.$emit("update:email", this.localEmail);
-                this.$emit("success");
+                this.$emit('update:email', this.localEmail);
+                this.$emit('success');
             } catch (error) {
-                this.errorMessage = error.response?.data || "Failed to send verification code.";
+                this.errorMessage = errorService.handleError(error) || 'Failed to send verification code.';
             }
         }
     }

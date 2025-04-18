@@ -15,8 +15,13 @@ export const getAccount = async () => {
 
 // 提交編輯後的 User
 export const updateAccount = async (user) => {
-    const response = await axios.patch(API_URL, user, getAuthHeaders())
-    return response.data
+    try {
+        const response = await axios.patch(API_URL, user, getAuthHeaders())
+        return response.data
+    }
+    catch (error) {
+        throw error
+    }
 }
 
 // 刪除帳號

@@ -35,7 +35,8 @@
 </template>
 
 <script>
-import { reset } from "@/api/reset";
+import { reset } from '@/api/reset';
+import errorService from '@/service/errorService';
 
 export default {
     props: {
@@ -44,25 +45,17 @@ export default {
             required: true
         }
     },
-    emits: ["success"],
+    emits: ['success'],
     data() {
         return {
-            password: "",
-            confirmPassword: "",
-            verificationCode: "",
-            errorMessage: ""
+            password: '',
+            confirmPassword: '',
+            verificationCode: '',
+            errorMessage: ''
         };
     },
     methods: {
-        async handleReset() {
-            this.errorMessage = "";
-            
-            // 檢查密碼
-            if (this.password !== this.confirmPassword) {
-                this.errorMessage = "Passwords do not match.";
-                return;
-            }
-    
+        async handleReset() {    
             try {
                 // 送出重設資料
                 const response = await reset({
@@ -73,9 +66,9 @@ export default {
                 });
     
                 alert(response);
-                this.$emit("success");
+                this.$emit('success');
             } catch (error) {
-                this.errorMessage = error.response?.data || "Failed to reset.";
+                this.errorMessage = errorService.handleError(error) || 'Failed to reset.';
             }
         }
     }

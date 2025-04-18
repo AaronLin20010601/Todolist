@@ -8,6 +8,9 @@
                 class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md" 
             />
         </div>
+
+        <!-- 錯誤消息顯示區域 -->
+        <div v-if="errorMessage" class="mt-4 text-red-500">{{ errorMessage }}</div>
     
         <div class="flex justify-between">
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
@@ -27,6 +30,7 @@
   
 <script>
 import { getAccount, updateAccount, deleteAccount } from '@/api/account'
+import errorService from '@/service/errorService';
   
 export default {
     data() {
@@ -34,6 +38,7 @@ export default {
             user: {
                 username: '',
             },
+            errorMessage: ''
         }
     },
     async created() {
@@ -41,25 +46,19 @@ export default {
             const response = await getAccount()
             this.user = response
         } catch (error) {
-            this.$emit('error', 'Failed to fetch user data.')
+            this.errorMessage = errorService.handleError(error) || 'Failed to fetch user data.'
         }
     },
     methods: {
         // 更新 User
         async onSubmit() {
-            // 驗證用戶名是否存在
-            if (!this.user.username.trim()) {
-                this.$emit('Username is required.')
-                return
-            }
-    
             try {
                 // 編輯成功
                 await updateAccount(this.user)
                 alert('User updated successfully!')
                 this.$emit('updated')
             } catch (error) {
-                alert(error.message || 'Update failed.')
+                this.errorMessage = errorService.handleError(error) || 'Failed to update user.';
             }
         },
         // 刪除 User
@@ -74,7 +73,7 @@ export default {
                 alert('Account deleted successfully.')
                 this.$emit('deleted')
             } catch (error) {
-                this.$emit('error', error.message || 'Delete failed.')
+                this.errorMessage = errorService.handleError(error) || 'Delete failed.'
             }
         }
     }

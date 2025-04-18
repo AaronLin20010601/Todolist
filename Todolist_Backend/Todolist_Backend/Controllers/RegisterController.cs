@@ -7,7 +7,7 @@ namespace Todolist_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RegisterController : ControllerBase
+    public class RegisterController : BaseApiController
     {
         private readonly ISendRegisterVerifyService _sendRegisterVerifyService;
         private readonly IRegisterService _registerService;
@@ -22,16 +22,26 @@ namespace Todolist_Backend.Controllers
         [HttpPost("send-verification-code")]
         public async Task<IActionResult> SendVerificationCode([FromBody] EmailDTO model)
         {
+            if (!ModelState.IsValid)
+            {
+                return ModelStateErrorResponse();
+            }
+
             var result = await _sendRegisterVerifyService.SendVerificationCodeAsync(model.Email);
-            return result.Success ? Ok(result.Message) : BadRequest(result.Message);
+            return result.Success ? Ok(result.Message) : BadRequest(new { Message = result.Message });
         }
 
         // 註冊流程的第二步 驗證驗證碼，並註冊用戶
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDTO model)
         {
+            if (!ModelState.IsValid)
+            {
+                return ModelStateErrorResponse();
+            }
+
             var result = await _registerService.RegisterAsync(model);
-            return result.Success ? Ok(result.Message) : BadRequest(result.Message);
+            return result.Success ? Ok(result.Message) : BadRequest(new { Message = result.Message });
         }
     }
 }

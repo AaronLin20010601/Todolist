@@ -15,12 +15,6 @@ namespace Todolist_Backend.Services.Account
 
         public async Task<(bool Success, string Message)> UpdateAccountAsync(int userId, AccountDTO model)
         {
-            // 檢查用戶名稱是否為空
-            if (string.IsNullOrWhiteSpace(model.Username))
-            {
-                return (false, "Username cannot be empty.");
-            }
-
             // 找出用戶資料
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
