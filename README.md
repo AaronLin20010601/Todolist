@@ -67,7 +67,7 @@ The application is developed using Supabase PostgreSQL as a managed cloud databa
   - Users can reset their password by providing email, then users can enter new password and verification code they get. A verification code email will be sent via Mailjet.
   
 3. Todolist:
-  - Users can view all their todos and filter them by completion status.
+  - Users can view all their todos and filter them by completion status and duedate time.
   - Users can check off and complete their todos that have not expired yet.
   - Todos are paginated with 10 items per page. Users can navigate between pages using pagination buttons, and pagination updates dynamically based on the selected filter status.
   - Users can create new todos or edit existing ones.
