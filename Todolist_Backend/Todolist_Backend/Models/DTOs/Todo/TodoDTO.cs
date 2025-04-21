@@ -2,6 +2,7 @@
 
 namespace Todolist_Backend.Models.DTOs.Todo
 {
+    // 取得待辦事項
     public class TodoDTO
     {
         public int Id { get; set; } // 主鍵

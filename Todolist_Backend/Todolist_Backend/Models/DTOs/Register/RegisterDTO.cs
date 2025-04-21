@@ -2,6 +2,7 @@
 
 namespace Todolist_Backend.Models.DTOs.Register
 {
+    // 取得註冊輸入資訊
     public class RegisterDTO
     {
         [Required(ErrorMessage = "Email is required.")]

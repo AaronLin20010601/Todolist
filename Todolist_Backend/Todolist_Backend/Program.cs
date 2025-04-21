@@ -13,14 +13,14 @@ using Todolist_Backend.Services.Interfaces.Reset;
 using Todolist_Backend.Services.Interfaces.Account;
 using Todolist_Backend.Services.Interfaces.Todo;
 
-using Todolist_Backend.Services.Email;
-using Todolist_Backend.Services.Token;
-using Todolist_Backend.Services.VerifyCode;
-using Todolist_Backend.Services.Login;
-using Todolist_Backend.Services.Register;
-using Todolist_Backend.Services.Reset;
-using Todolist_Backend.Services.Account;
-using Todolist_Backend.Services.Todo;
+using Todolist_Backend.Services.Implements.Email;
+using Todolist_Backend.Services.Implements.Token;
+using Todolist_Backend.Services.Implements.VerifyCode;
+using Todolist_Backend.Services.Implements.Login;
+using Todolist_Backend.Services.Implements.Register;
+using Todolist_Backend.Services.Implements.Reset;
+using Todolist_Backend.Services.Implements.Account;
+using Todolist_Backend.Services.Implements.Todo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,7 +40,7 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 // Token Service
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 
-// Verify Code service
+// Verify Code Service
 builder.Services.AddScoped<IVerificationCode, VerificationCode>();
 builder.Services.AddScoped<IRegisterVerificationService, RegisterVerificationService>();
 builder.Services.AddScoped<IResetVerificationService, ResetVerificationService>();

@@ -2,6 +2,7 @@
 
 namespace Todolist_Backend.Models.DTOs.Login
 {
+    // 取得登入輸入資訊
     public class LoginDTO
     {
         [Required(ErrorMessage = "Email is required.")]

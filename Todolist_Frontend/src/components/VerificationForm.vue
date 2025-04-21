@@ -1,6 +1,7 @@
 <template>
     <!-- 發送驗證碼表單 -->
     <form @submit.prevent="handleSendCode">
+        <!-- Email 欄位-->
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700">Email</label>
             <input
@@ -12,6 +13,7 @@
         <!-- 錯誤消息顯示區域 -->
         <div v-if="errorMessage" class="text-red-500 text-sm mb-4">{{ errorMessage }}</div>
     
+        <!-- 發送驗證碼 -->
         <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
         Send Verification Code
         </button>

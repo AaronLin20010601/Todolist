@@ -1,6 +1,7 @@
 <template>
     <!-- 註冊表單 -->
     <form @submit.prevent="handleRegister">
+        <!-- 使用者名稱欄位 -->
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700">Username</label>
             <input
@@ -8,7 +9,8 @@
                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
             />
         </div>
-    
+        
+        <!-- Email 欄位 -->
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700">Email</label>
             <input
@@ -17,6 +19,7 @@
             />
         </div>
     
+        <!-- 密碼欄位 -->
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700">Password</label>
             <input
@@ -25,6 +28,7 @@
             />
         </div>
     
+        <!-- 確認密碼欄位 -->
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700">Confirm Password</label>
             <input
@@ -33,6 +37,7 @@
             />
         </div>
     
+        <!-- 驗證碼欄位 -->
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700">Verification Code</label>
             <input
@@ -43,7 +48,8 @@
         
         <!-- 錯誤消息顯示區域 -->
         <div v-if="errorMessage" class="text-red-500 text-sm mb-4">{{ errorMessage }}</div>
-    
+        
+        <!-- 註冊帳號 -->
         <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
         Register
         </button>

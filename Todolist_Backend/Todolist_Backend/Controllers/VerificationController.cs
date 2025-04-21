@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Todolist_Backend.Models.DTOs.Verification;
 using Todolist_Backend.Services.Interfaces.VerifyCode;
-using Todolist_Backend.Services.VerifyCode;
 
 namespace Todolist_Backend.Controllers
 {

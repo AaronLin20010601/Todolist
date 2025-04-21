@@ -1,5 +1,6 @@
 ﻿namespace Todolist_Backend.Models.Entities
 {
+    // 註冊和重設密碼驗證碼
     public class ResetToken
     {
         public int Id { get; set; } // 主鍵

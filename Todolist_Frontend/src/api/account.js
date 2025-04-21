@@ -26,6 +26,11 @@ export const updateAccount = async (user) => {
 
 // 刪除帳號
 export const deleteAccount = async () => {
-    const response = await axios.delete(API_URL, getAuthHeaders())
-    return response.data
+    try {
+        const response = await axios.delete(API_URL, getAuthHeaders())
+        return response.data
+    }
+    catch (error) {
+        throw error
+    }
 }

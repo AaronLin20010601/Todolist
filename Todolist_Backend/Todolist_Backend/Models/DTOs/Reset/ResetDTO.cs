@@ -2,6 +2,7 @@
 
 namespace Todolist_Backend.Models.DTOs.Reset
 {
+    // 取得重設密碼輸入資訊
     public class ResetDTO
     {
         [Required(ErrorMessage = "Email is required.")]

@@ -1,5 +1,6 @@
 ﻿namespace Todolist_Backend.Models.Entities
 {
+    // 使用者
     public class User
     {
         public int Id { get; set; } // 主鍵

@@ -1,4 +1,5 @@
 <template>
+    <!-- 登入表單 -->
     <form @submit.prevent="loginUser">
         <!-- Email 欄位 -->
         <div class="mb-4">
@@ -9,7 +10,7 @@
             />
         </div>
     
-        <!-- Password 欄位 -->
+        <!-- 密碼欄位 -->
         <div class="mb-4">
             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
             <input
@@ -21,7 +22,7 @@
         <!-- 錯誤消息顯示區域 -->
         <div v-if="errorMessage" class="text-red-500 text-sm mt-4">{{ errorMessage }}</div>
 
-        <!-- 登入按鈕 -->
+        <!-- 登入並進入首頁 -->
         <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
         Login
         </button>

@@ -1,6 +1,7 @@
 <template>
-    <!-- 重設表單 -->
+    <!-- 重設密碼表單 -->
     <form @submit.prevent="handleReset">
+        <!-- 密碼欄位 -->
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700">New Password</label>
             <input
@@ -9,6 +10,7 @@
             />
         </div>
     
+        <!-- 確認密碼欄位 -->
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700">Confirm Password</label>
             <input
@@ -17,6 +19,7 @@
             />
         </div>
     
+        <!-- 驗證碼欄位 -->
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700">Verification Code</label>
             <input
@@ -27,7 +30,8 @@
         
         <!-- 錯誤消息顯示區域 -->
         <div v-if="errorMessage" class="text-red-500 text-sm mb-4">{{ errorMessage }}</div>
-    
+        
+        <!-- 重設密碼 -->
         <button type="submit" class="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600">
         Reset Password
         </button>

@@ -8,13 +8,13 @@
                 v-model="internalFilter" @change="onFilterChange"
                 class="p-2 border border-gray-300 rounded-md"
             >
-            <option value="all">All</option>
-            <option value="completed">Completed</option>
-            <option value="incomplete">Incomplete</option>
-            <option value="expired">Expired</option>
+                <option value="all">All</option>
+                <option value="completed">Completed</option>
+                <option value="incomplete">Incomplete</option>
+                <option value="expired">Expired</option>
             </select>
 
-            <!-- 新增 Todo 按鈕 -->
+            <!-- 前往新增 Todo -->
             <button @click="goToAddTodo" class="ml-2 bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
             Add Todo
             </button>

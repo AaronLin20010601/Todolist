@@ -1,4 +1,4 @@
-<!--網頁頁尾-->
+<!-- 網頁頁尾 -->
 <template>
     <footer class="bg-gray-800 text-white py-3 mt-auto">
         <div class="container mx-auto text-center">

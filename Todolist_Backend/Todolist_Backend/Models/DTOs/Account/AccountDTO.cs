@@ -2,6 +2,7 @@
 
 namespace Todolist_Backend.Models.DTOs.Account
 {
+    // 取得和編輯用戶資料
     public class AccountDTO
     {
         [Required(ErrorMessage = "Username is required.")]

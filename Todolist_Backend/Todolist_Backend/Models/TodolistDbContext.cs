@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Todolist_Backend.Models.Entities;
 
 namespace Todolist_Backend.Models
 {
     public class TodolistDbContext : DbContext
     {
+        // Code First Migration 資料庫 context
         public TodolistDbContext(DbContextOptions<TodolistDbContext> options) : base(options)
         {
         }

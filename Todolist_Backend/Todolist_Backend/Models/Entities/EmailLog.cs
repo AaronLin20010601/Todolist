@@ -1,5 +1,6 @@
 ﻿namespace Todolist_Backend.Models.Entities
 {
+    // Email 傳送紀錄
     public class EmailLog
     {
         public int Id { get; set; } // 主鍵

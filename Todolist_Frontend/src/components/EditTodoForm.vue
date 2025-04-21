@@ -1,6 +1,7 @@
 <template>
     <!-- 編輯 Todo 表單 -->
     <form @submit.prevent="onSubmit" class="space-y-6">
+        <!-- 標題欄位 -->
         <div>
             <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
             <input
@@ -9,6 +10,7 @@
             />
         </div>
     
+        <!-- 描述欄位 -->
         <div>
             <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
             <textarea 
@@ -16,7 +18,8 @@
                 class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md"
             ></textarea>
         </div>
-    
+        
+        <!-- 截止時間欄位 -->
         <div>
             <label for="dueDate" class="block text-sm font-medium text-gray-700">Due Date</label>
             <input 
@@ -29,10 +32,12 @@
         <div v-if="errorMessage" class="mt-4 text-red-500">{{ errorMessage }}</div>
     
         <div class="flex justify-between">
+            <!-- 儲存變更 -->
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
             Save Changes
             </button>
-    
+            
+            <!-- 返回 Todo 首頁 -->
             <button @click="$router.push('/todo')" type="button" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">
             Back to Todo List
             </button>
@@ -57,6 +62,7 @@ export default {
         }
     },
     async created() {
+        // 取得要編輯的 Todo 資料
         try {
             const result = await getEditTodo(this.todoId)
             this.todo = {

@@ -13,7 +13,7 @@ import LoginForm from '@/components/LoginForm.vue'
 export default {
     components: { LoginForm },
     methods: {
-        // 登入成功後進入 Todo
+        // 登入成功後進入 Todo 首頁
         handleSuccess({ token, user }) {
             this.$store.dispatch('login', { token, user })
             this.$router.push('/todo')

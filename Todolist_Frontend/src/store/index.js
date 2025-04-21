@@ -46,7 +46,7 @@ const store = createStore({
             localStorage.removeItem('user');
         },
 
-        // 初始化狀態（從 localStorage）
+        // 從 localStorage 初始化狀態
         initState({ commit }) {
             const token = localStorage.getItem('token');
             const user = JSON.parse(localStorage.getItem('user'));

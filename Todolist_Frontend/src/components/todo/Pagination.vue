@@ -5,7 +5,7 @@
         <button @click="$emit('page-change', 1)" :disabled="currentPage === 1" class="px-2 py-1 border rounded-md">«</button>
         <button @click="$emit('page-change', currentPage - 1)" :disabled="currentPage === 1" class="px-2 py-1 border rounded-md">‹</button>
         
-        <!-- 中間幾個頁碼 -->
+        <!-- 中間頁碼 -->
         <button
             v-for="page in visiblePages" :key="page" @click="$emit('page-change', page)"
             :class="[

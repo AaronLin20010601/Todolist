@@ -1,5 +1,6 @@
 ﻿namespace Todolist_Backend.Models.Entities
 {
+    // 待辦事項
     public class Todo
     {
         public int Id { get; set; } // 主鍵
