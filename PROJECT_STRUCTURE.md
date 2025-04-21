@@ -44,75 +44,76 @@ Todolist_Backend/
 │   └── TodolistDbContext.cs
 │
 ├── Services/
-│   ├── Interfaces/
+│   ├── Implements/
 │   │   ├── Account/
-│   │   │   ├── IDeleteAccountService.cs
-│   │   │   ├── IGetAccountService.cs
-│   │   │   └── IUpdateAccountService.cs
+│   │   │   ├── DeleteAccountService.cs
+│   │   │   ├── GetAccountService.cs
+│   │   │   └── UpdateAccountService.cs
 │   │   │
 │   │   ├── Email/
-│   │   │   ├── IEmailLogger.cs
-│   │   │   ├── IEmailSender.cs
-│   │   │   └── IEmailService.cs
+│   │   │   ├── EmailLogger.cs
+│   │   │   ├── EmailSender.cs
+│   │   │   └── EmailService.cs
 │   │   │
 │   │   ├── Login/
-│   │   │   └── ILoginService.cs
+│   │   │   └── LoginService.cs
 │   │   │
 │   │   ├── Register/
-│   │   │   └── IRegisterService.cs
+│   │   │   └── RegisterService.cs
 │   │   │
 │   │   ├── Reset/
-│   │   │   └── IResetPasswordService.cs
+│   │   │   └── ResetPasswordService.cs
 │   │   │
 │   │   ├── Todo/
-│   │   │   ├── ICreateTodoService.cs
-│   │   │   ├── IDeleteTodoService.cs
-│   │   │   ├── IEditTodoService.cs
-│   │   │   ├── IGetEditService.cs
-│   │   │   ├── IGetTodoService.cs
-│   │   │   └── IUpdateCompleteService.cs
+│   │   │   ├── CreateTodoService.cs
+│   │   │   ├── DeleteTodoService.cs
+│   │   │   ├── EditTodoService.cs
+│   │   │   ├── GetEditService.cs
+│   │   │   ├── GetTodoService.cs
+│   │   │   └── UpdateCompleteService.cs
 │   │   │
 │   │   ├── Token/
-│   │   │   └── IJwtTokenService.cs
+│   │   │   └── JwtTokenService.cs
 │   │   │
 │   │   └── VerifyCode/
-│   │       ├── IVerificationCode.cs
-│   │       └── IVerificationCodeService.cs
+│   │       ├── RegisterVerificationService.cs
+│   │       ├── ResetVerificationService.cs
+│   │       └── VerificationCode.cs
 │   │
-│   ├── Account/
-│   │   ├── DeleteAccountService.cs
-│   │   ├── GetAccountService.cs
-│   │   └── UpdateAccountService.cs
-│   │
-│   ├── Email/
-│   │   ├── EmailLogger.cs
-│   │   ├── EmailSender.cs
-│   │   └── EmailService.cs
-│   │
-│   ├── Login/
-│   │   └── LoginService.cs
-│   │
-│   ├── Register/
-│   │   └── RegisterService.cs
-│   │
-│   ├── Reset/
-│   │   └── ResetPasswordService.cs
-│   │
-│   ├── Todo/
-│   │   ├── CreateTodoService.cs
-│   │   ├── DeleteTodoService.cs
-│   │   ├── EditTodoService.cs
-│   │   ├── GetEditService.cs
-│   │   ├── GetTodoService.cs
-│   │   └── UpdateCompleteService.cs
-│   │
-│   ├── Token/
-│   │   └── JwtTokenService.cs
-│   │
-│   └── VerifyCode/
-│       ├── RegisterVerificationService.cs
-│       ├── ResetVerificationService.cs
-│       └── VerificationCode.cs
+│   └── Interfaces/
+│       ├── Account/
+│       │   ├── IDeleteAccountService.cs
+│       │   ├── IGetAccountService.cs
+│       │   └── IUpdateAccountService.cs
+│       │
+│       ├── Email/
+│       │   ├── IEmailLogger.cs
+│       │   ├── IEmailSender.cs
+│       │   └── IEmailService.cs
+│       │
+│       ├── Login/
+│       │   └── ILoginService.cs
+│       │
+│       ├── Register/
+│       │   └── IRegisterService.cs
+│       │
+│       ├── Reset/
+│       │   └── IResetPasswordService.cs
+│       │
+│       ├── Todo/
+│       │   ├── ICreateTodoService.cs
+│       │   ├── IDeleteTodoService.cs
+│       │   ├── IEditTodoService.cs
+│       │   ├── IGetEditService.cs
+│       │   ├── IGetTodoService.cs
+│       │   └── IUpdateCompleteService.cs
+│       │
+│       ├── Token/
+│       │   └── IJwtTokenService.cs
+│       │
+│       └── VerifyCode/
+│           ├── IVerificationCode.cs
+│           └── IVerificationCodeService.cs
 │
 ├── Settings/
 │   └── MailjetSettings.cs
