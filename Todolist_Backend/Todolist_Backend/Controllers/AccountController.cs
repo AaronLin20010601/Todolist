@@ -63,6 +63,11 @@ namespace Todolist_Backend.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteAccount()
         {
+            if (!ModelState.IsValid)
+            {
+                return ModelStateErrorResponse();
+            }
+
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
             if (userId == 0) 

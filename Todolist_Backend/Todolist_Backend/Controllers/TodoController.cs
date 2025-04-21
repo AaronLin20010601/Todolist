@@ -92,6 +92,11 @@ namespace Todolist_Backend.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEditTodo(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return ModelStateErrorResponse();
+            }
+
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
             if (userId == 0)
@@ -135,6 +140,11 @@ namespace Todolist_Backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTodo(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return ModelStateErrorResponse();
+            }
+
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
             if (userId == 0)

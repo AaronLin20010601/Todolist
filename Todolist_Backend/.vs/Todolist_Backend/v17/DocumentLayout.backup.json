@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\models\\dtos\\todo\\todoeditdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\models\\dtos\\todo\\todoeditdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\models\\dtos\\todo\\tododto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\models\\dtos\\todo\\tododto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\models\\entities\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\models\\entities\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\services\\implements\\todo\\createtodoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\services\\implements\\todo\\createtodoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\services\\interfaces\\todo\\igettodosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|solutionrelative:todolist_backend\\services\\interfaces\\todo\\igettodosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CC689A75-1BFB-433E-B8EF-7CD1427EF54B}|Todolist_Backend\\Todolist_Backend.csproj|c:\\users\\asus\\desktop\\todolist\\todolist_backend\\todolist_backend\\services\\implements\\todo\\gettodosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,69 +22,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CreateTodoService.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Services\\Implements\\Todo\\CreateTodoService.cs",
-              "RelativeDocumentMoniker": "Todolist_Backend\\Services\\Implements\\Todo\\CreateTodoService.cs",
-              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Services\\Implements\\Todo\\CreateTodoService.cs",
-              "RelativeToolTip": "Todolist_Backend\\Services\\Implements\\Todo\\CreateTodoService.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAADwvxoAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T02:39:30.333Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Todo.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Models\\Entities\\Todo.cs",
-              "RelativeDocumentMoniker": "Todolist_Backend\\Models\\Entities\\Todo.cs",
-              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Models\\Entities\\Todo.cs",
-              "RelativeToolTip": "Todolist_Backend\\Models\\Entities\\Todo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T02:35:51.005Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TodoDTO.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Models\\DTOs\\Todo\\TodoDTO.cs",
-              "RelativeDocumentMoniker": "Todolist_Backend\\Models\\DTOs\\Todo\\TodoDTO.cs",
-              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Models\\DTOs\\Todo\\TodoDTO.cs",
-              "RelativeToolTip": "Todolist_Backend\\Models\\DTOs\\Todo\\TodoDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAYAAAAAAAAAA==",
+              "Title": "IGetTodosService.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Services\\Interfaces\\Todo\\IGetTodosService.cs",
+              "RelativeDocumentMoniker": "Todolist_Backend\\Services\\Interfaces\\Todo\\IGetTodosService.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Services\\Interfaces\\Todo\\IGetTodosService.cs",
+              "RelativeToolTip": "Todolist_Backend\\Services\\Interfaces\\Todo\\IGetTodosService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T02:35:34.475Z",
+              "WhenOpened": "2025-04-21T03:24:05.294Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TodoEditDTO.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Models\\DTOs\\Todo\\TodoEditDTO.cs",
-              "RelativeDocumentMoniker": "Todolist_Backend\\Models\\DTOs\\Todo\\TodoEditDTO.cs",
-              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Models\\DTOs\\Todo\\TodoEditDTO.cs",
-              "RelativeToolTip": "Todolist_Backend\\Models\\DTOs\\Todo\\TodoEditDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Title": "TodoController.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\TodoController.cs",
+              "RelativeDocumentMoniker": "Todolist_Backend\\Controllers\\TodoController.cs",
+              "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Controllers\\TodoController.cs",
+              "RelativeToolTip": "Todolist_Backend\\Controllers\\TodoController.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAnwDIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T02:35:28.324Z",
+              "WhenOpened": "2025-04-21T03:23:41.782Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "GetTodosService.cs",
               "DocumentMoniker": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Services\\Implements\\Todo\\GetTodosService.cs",
               "RelativeDocumentMoniker": "Todolist_Backend\\Services\\Implements\\Todo\\GetTodosService.cs",
               "ToolTip": "C:\\Users\\asus\\Desktop\\Todolist\\Todolist_Backend\\Todolist_Backend\\Services\\Implements\\Todo\\GetTodosService.cs",
               "RelativeToolTip": "Todolist_Backend\\Services\\Implements\\Todo\\GetTodosService.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAIwC0AAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-21T01:42:44.807Z",
               "EditorCaption": ""
