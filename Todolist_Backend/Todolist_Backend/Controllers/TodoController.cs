@@ -35,7 +35,9 @@ namespace Todolist_Backend.Controllers
         // 取得登入使用者的 Todo 列表
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetTodos([FromQuery] string? filter = "all", [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        public async Task<IActionResult> GetTodos(
+                [FromQuery] string? status = "all", [FromQuery] DateTime? startDueDate = null, [FromQuery] DateTime? endDueDate = null, [FromQuery] int page = 1, [FromQuery] int pageSize = 10
+            )
         {
             // 確保有登入的用戶
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "0");
@@ -44,7 +46,7 @@ namespace Todolist_Backend.Controllers
                 return Unauthorized(new { Message = "User is not authenticated." });
             }
 
-            var data = await _getTodosService.GetTodosAsync(userId, filter, page, pageSize);
+            var data = await _getTodosService.GetTodosAsync(userId, status, startDueDate, endDueDate, page, pageSize);
             return Ok(data);
         }
 

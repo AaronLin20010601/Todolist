@@ -8,9 +8,23 @@ const getAuthHeaders = () => ({
 })
 
 // 取得 Todo 列表
-export const fetchTodos = async (filter, page, pageSize) => {
-    const response = await axios.get(`${API_URL}?filter=${filter}&page=${page}&pageSize=${pageSize}`, getAuthHeaders())
-    return response.data
+export const fetchTodos = async ({filter, startDueDate = null, endDueDate = null, page, pageSize}) => {
+    const params = new URLSearchParams({
+        status: filter,
+        page,
+        pageSize,
+    });
+
+    if (startDueDate) {
+        params.append('startDueDate', new Date(startDueDate).toISOString());
+    }
+
+    if (endDueDate) {
+        params.append('endDueDate', new Date(endDueDate).toISOString());
+    }
+
+    const response = await axios.get(`${API_URL}?${params.toString()}`, getAuthHeaders());
+    return response.data;
 }
 
 // 更新 Todo 完成狀態

@@ -30,6 +30,8 @@ export default {
         return {
             todos: [],
             filter: 'all',
+            startDueDate: null,
+            endDueDate: null,
             page: 1,
             pageSize: 10,
             totalPages: 1,
@@ -40,7 +42,10 @@ export default {
         // 獲取 Todo 列表
         async getTodos() {
             try {
-                const data = await fetchTodos(this.filter, this.page, this.pageSize);
+                const data = await fetchTodos({
+                    filter : this.filter, startDueDate : this.startDueDate, endDueDate : this.endDueDate, 
+                    page : this.page, pageSize : this.pageSize
+                });
                 this.todos = data.items.map(todo => ({
                     ...todo,
                     isCompleted: todo.status === 'completed'
@@ -63,7 +68,9 @@ export default {
 
         // 重置頁面
         onFilterChange(newFilter) {
-            this.filter = newFilter;
+            this.filter = newFilter.filter;
+            this.startDueDate = newFilter.startDueDate;
+            this.endDueDate = newFilter.endDueDate;
             this.page = 1;
             this.getTodos();
         },

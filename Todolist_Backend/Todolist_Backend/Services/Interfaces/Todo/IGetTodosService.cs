@@ -2,6 +2,6 @@
 {
     public interface IGetTodosService
     {
-        Task<object> GetTodosAsync(int userId, string? filter, int page, int pageSize);
+        Task<object> GetTodosAsync(int userId, string? status, DateTime? startDueDate, DateTime? endDueDate, int page, int pageSize);
     }
 }

@@ -15,12 +15,12 @@ namespace Todolist_Backend.Services.Implements.Todo
         }
 
         // 取得使用者 Todo 資料
-        public async Task<object> GetTodosAsync(int userId, string? filter, int page, int pageSize)
+        public async Task<object> GetTodosAsync(int userId, string? status, DateTime? startDueDate, DateTime? endDueDate, int page, int pageSize)
         {
             var query = _context.Todos.Where(t => t.UserId == userId);
 
-            // 根據篩選條件進行查詢
-            switch (filter?.ToLower())
+            // 篩選完成狀態
+            switch (status?.ToLower())
             {
                 case "completed":
                     query = query.Where(t => t.IsCompleted);
@@ -35,13 +35,23 @@ namespace Todolist_Backend.Services.Implements.Todo
                     break;
             }
 
+            // 篩選截止時間區間
+            if (startDueDate.HasValue)
+                query = query.Where(t => t.DueDate.HasValue && t.DueDate.Value >= startDueDate.Value);
+
+            if (endDueDate.HasValue)
+                query = query.Where(t => t.DueDate.HasValue && t.DueDate.Value <= endDueDate.Value);
+
             // 取得資料並返回
             var totalItems = await query.CountAsync();
             var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
             // 分頁處理
             var todos = await query
-                .OrderByDescending(t => t.CreatedAt)
+                .OrderBy(t => t.DueDate == null)
+                .ThenBy(t => t.DueDate.HasValue && t.DueDate < DateTime.UtcNow ? 1 : 0)
+                .ThenBy(t => t.DueDate.HasValue && t.DueDate >= DateTime.UtcNow ? t.DueDate.Value : DateTime.MaxValue)
+                .ThenByDescending(t => t.DueDate.HasValue && t.DueDate < DateTime.UtcNow ? t.DueDate.Value : DateTime.MinValue)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
