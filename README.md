@@ -62,21 +62,35 @@ The application is developed using Supabase PostgreSQL as a managed cloud databa
 ## Project setup and compile on development
 For backend part:  
 1. Create a visual studio 2022 .net core web api project in Todolist folder.
-2. When need to compile and test via cmd, enter the following commands:
-```cd Todolist/Todolist_Backend/Todolist_Backend```  
-```dotnet run```  
+2. When need to compile and test via cmd, enter the following commands:  
+```sh
+cd Todolist/Todolist_Backend/Todolist_Backend
+```  
+```sh
+dotnet run
+```  
   
 For frontend part:  
-1. Create a new vue default project by the following commands and steps:
-```cd Todolist```  
-```npm create vite@latest Todolist_Frontend```  
+1. Create a new vue default project by the following commands and steps:  
+```sh
+cd Todolist
+```  
+```sh
+npm create vite@latest Todolist_Frontend
+```  
 Select framework as vue, choose variant as Offical Vue Starter.  
 Select Router and ESLint.  
-```npm install```  
+```sh
+npm install
+```  
 
-2. When need to comiple and test via cmd, enter the following commands:
-```cd Todolist/Todolist_Frontend```  
-```npm run dev```  
+3. When need to comiple and test via cmd, enter the following commands:  
+```sh
+cd Todolist/Todolist_Frontend
+```  
+```sh
+npm run dev
+```  
 
 -----
 ## Features
