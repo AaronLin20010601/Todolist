@@ -84,7 +84,7 @@ Select Router and ESLint.
 npm install
 ```  
 
-3. When need to comiple and test via cmd, enter the following commands:  
+3. When need to compile and test via cmd, enter the following commands:  
 ```sh
 cd Todolist/Todolist_Frontend
 ```  
