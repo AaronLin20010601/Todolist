@@ -110,3 +110,8 @@ npm run dev
   
 4. Account:
   - Users can edit and delete their account.
+
+-----
+## Usage Limitations
+Due to the limitations of free-tier services and API usage quotas, this project is subject to the following usage frequency restrictions:  
+1. All projects combine can only send 6000 emails total per month in Mailjet's free plan.
