@@ -6,7 +6,7 @@
             <ul class="flex space-x-6">
                 <!-- 登入 -->
                 <li v-if="!isLoggedIn">
-                    <RouterLink to="/" class="hover:text-yellow-300" active-class="underline">Login</RouterLink>
+                    <RouterLink to="/login" class="hover:text-yellow-300" active-class="underline">Login</RouterLink>
                 </li>
                 <!-- 註冊 -->
                 <li v-if="!isLoggedIn">
